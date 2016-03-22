@@ -22,7 +22,11 @@ CVS
 
 # node noise
 node_modules
+npm-debug.log
 
 # Compiled items
-scripts.min.js
-style.css
+assets/css/
+assets/js/
+
+# Bower
+src/components

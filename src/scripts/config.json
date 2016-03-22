@@ -1,0 +1,11 @@
+{
+    "outputFileName" : "scripts.js",
+    "dependencies" : [
+        "src/components/jquery/dist/jquery.js",
+        "src/components/enquire/dist/enquire.js"
+    ],
+    "public" : [
+        "src/components/css3-mediaqueries-js/css3-mediaqueries.js",
+        "src/components/html5shiv/dist/html5shiv.js"
+    ]
+}
