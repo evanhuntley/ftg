@@ -31,7 +31,9 @@
 <!-- The little things -->
 
 <!-- Stylesheets -->
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+	<link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="<?php echo bloginfo('template_directory'); ?>/assets/css/style.css" />
 <!-- Stylesheets -->
 
 <!-- Load scripts quick smart -->
@@ -43,18 +45,17 @@
 
 <body <?php body_class(); ?> id="top">
     <header role="banner">
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="logo"><?php bloginfo( 'name' ); ?></a>
-        <p class="desc">
-			<?php bloginfo( 'description' ); ?>
-        </p>
-        <nav role="navigation">
-            <?php
-                $args = array(
-                    'container' => 'false',
-                    'items_wrap' => '<ul>%3$s</ul>',
-                    );
-                wp_nav_menu($args);
-            ?>
-        </nav>
-        <?php get_search_form(); ?>
+		<div class="container">
+	        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="logo"><?php bloginfo( 'name' ); ?></a>
+	        <nav role="navigation">
+	            <?php
+	                $args = array(
+	                    'container' => 'false',
+	                    'items_wrap' => '<ul>%3$s</ul>',
+	                    );
+	                wp_nav_menu($args);
+	            ?>
+	        </nav>
+	        <?php //get_search_form(); ?>
+		</div>
     </header>

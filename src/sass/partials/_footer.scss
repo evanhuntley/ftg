@@ -1,16 +1,9 @@
 /* ================================================================
-    Site Layout
+    Footer
 =================================================================== */
 
-.primary-content, .container {
-    width: 95%;
-    margin: 0 auto;
-
-    @include bp-xl {
-        width: 1000px;
-    }
-}
-
-.primary-content {
+footer {
+    margin: 1em 0 0;
     padding: 1em 0;
+    background: #ccc;
 }
