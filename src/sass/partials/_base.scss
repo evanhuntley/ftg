@@ -13,12 +13,14 @@ body {
     width: 100%;
     margin: 0 auto;
     padding: 0;
-    font-family: 'Merriweather', Arial, sans-serif;
+
+    @include bp-l {
+        position: relative;
+    }
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0 0 1em;
-    font-family: 'Lato', Arial, sans-serif;
+a {
+    color: #89c23f;
 }
 
 ul, ol {
@@ -50,3 +52,7 @@ figure {
 
         }
     }
+
+.page .um {
+    opacity: 1;
+}

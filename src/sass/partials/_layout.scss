@@ -9,6 +9,12 @@
     @include bp-xl {
         width: 1000px;
     }
+
+    &.type-profile {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .primary-content {

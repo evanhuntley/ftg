@@ -2,12 +2,21 @@
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-    <article role="main" class="primary-content type-page" id="post-<?php the_ID(); ?>">
-        <?php if ( is_front_page() ) { ?>
-            <h1><?php the_title(); ?></h1>
-        <?php } else { ?>
-            <h1><?php the_title(); ?></h1>
-        <?php } ?>
+    <section class="section-header">
+        <div class="container">
+            <?php if ( is_front_page() ) { ?>
+                <h1><?php the_title(); ?></h1>
+            <?php } else if ( !bp_is_member()) { ?>
+                <h1><?php the_title(); ?></h1>
+            <?php } ?>
+        </div>
+    </section>
+
+    <?php if ( bp_is_member()) : ?>
+        <article role="main" class="primary-content type-profile">
+    <?php else : ?>
+        <article role="main" class="primary-content type-page" id="post-<?php the_ID(); ?>">
+    <?php endif ; ?>
 
         <?php the_content(); ?>
 

@@ -1,0 +1,93 @@
+/* ================================================================
+    Profile
+=================================================================== */
+
+.profile, .my-account {
+
+    .avatar {
+        border-radius: 50%;
+    }
+
+    .activity {
+        display: none;
+    }
+
+    #item-header {
+        position: absolute;
+        width: 100%;
+        top: 80px;
+
+        #item-header-avatar {
+            @extend .container;
+        }
+
+        .profile-image {
+            float: left;
+        }
+
+        .name {
+            float: left;
+            color: #fff;
+        }
+    }
+
+    #item-nav {
+        background: #ececec;
+
+        .item-list-tabs {
+            @extend .container;
+            position: relative;
+            padding-left: 170px;
+            z-index: 60;
+        }
+
+        ul {
+            margin: 0;
+            list-style-type: none;
+
+            li {
+
+                @include bp-l {
+                    display: inline-block;
+                    margin-right: 1em;
+                }
+            }
+
+            a {
+                color: #333;
+                text-decoration: none;
+            }
+
+            .current a {
+                color: #000;
+            }
+        }
+    }
+
+    #item-body {
+        @extend .container;
+
+        .item-list-tabs {
+            position: relative;
+            padding-left: 170px;
+            z-index: 60;
+
+            ul {
+                margin: 0;
+                list-style-type: none;
+
+                li {
+
+                    @include bp-l {
+                        display: inline-block;
+                        margin-right: 1em;
+                    }
+                }
+            }
+        }
+    }
+
+    .profile {
+        margin-top: 50px;
+    }
+}

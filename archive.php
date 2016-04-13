@@ -4,18 +4,21 @@
 	if ( have_posts() )
 		the_post();
 ?>
-
-<h1>
-	<?php if ( is_day() ) : ?>
-        <?php printf( __( 'Daily Archives: <span>%s</span>' ), get_the_date() ); ?>
-    <?php elseif ( is_month() ) : ?>
-        <?php printf( __( 'Monthly Archives: <span>%s</span>' ), get_the_date('F Y') ); ?>
-    <?php elseif ( is_year() ) : ?>
-        <?php printf( __( 'Yearly Archives: <span>%s</span>' ), get_the_date('Y') ); ?>
-    <?php else : ?>
-        <?php _e( 'The Blog' ); ?>
-    <?php endif; ?>
-</h1>
+<section class="section-header">
+	<div class="container">
+		<h1>
+			<?php if ( is_day() ) : ?>
+		        <?php printf( __( 'Daily Archives: <span>%s</span>' ), get_the_date() ); ?>
+		    <?php elseif ( is_month() ) : ?>
+		        <?php printf( __( 'Monthly Archives: <span>%s</span>' ), get_the_date('F Y') ); ?>
+		    <?php elseif ( is_year() ) : ?>
+		        <?php printf( __( 'Yearly Archives: <span>%s</span>' ), get_the_date('Y') ); ?>
+		    <?php else : ?>
+		        <?php _e( 'The Blog' ); ?>
+		    <?php endif; ?>
+		</h1>
+	</div>
+</section>
 
 <?php
 	/* Since we called the_post() above, we need to
@@ -31,4 +34,4 @@
 	 get_template_part( 'loop', 'archive' );
 ?>
 
-<?php get_footer(); ?>
+<?php get_footer('no-sidebar'); ?>

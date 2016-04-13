@@ -4,9 +4,14 @@
 
 header {
     @extend %clearfix;
-    background: #ececec;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
 
     nav {
+        font-family: 'Lato', Arial, sans-serif;
 
         @include bp-xl {
             width: 70%;
@@ -15,6 +20,7 @@ header {
             ul {
                 margin: 0;
                 padding: 0;
+                float: right;
             }
 
             li {
@@ -23,6 +29,9 @@ header {
                 a {
                     display: block;
                     padding: 1em;
+                    color: #fff;
+                    color: rgba(255, 255, 255, 0.8);
+                    text-decoration: none;
                 }
             }
         }
@@ -30,10 +39,36 @@ header {
 
     .logo {
         margin: 1em 0 0;
-        
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+
         @include bp-xl {
             width: 30%;
             float: left;
         }
+    }
+}
+
+/* Section Headers -------------------------------------------- */
+
+.section-header {
+    background: url('../img/bg_math.jpg');
+    background-size: cover;
+
+    .container {
+        position: relative;
+        min-height: 60px;
+
+        @include bp-l {
+            min-height: 150px;
+        }
+    }
+
+    h1 {
+        position: absolute;
+        bottom: 0;
+        margin: 0 0 10px;
+        color: #fff;
     }
 }

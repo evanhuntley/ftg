@@ -24,7 +24,7 @@
 <?php while ( have_posts() ) : the_post(); ?>
 	<?php /* How to display standard posts and search results */ ?>
 
-        <article class="article-archive <?php echo $firstClass; ?>" id="post-<?php the_ID(); ?>">
+        <article class="article-archive primary-content <?php echo $firstClass; ?>" id="post-<?php the_ID(); ?>">
 			<?php $firstClass = ""; ?>
 			<?php ?>
                 <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( '%s' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">

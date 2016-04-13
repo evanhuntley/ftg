@@ -90,4 +90,119 @@ function current_to_active($text){
         }
 add_filter ('wp_nav_menu','current_to_active');
 
+// Set Buddypress Member Types
+function bbg_register_member_types() {
+    bp_register_member_type( 'member', array(
+        'labels' => array(
+            'name'          => 'Members',
+            'singular_name' => 'Member',
+        ),
+    ) );
+	bp_register_member_type( 'senior-member', array(
+        'labels' => array(
+            'name'          => 'Senior Members',
+            'singular_name' => 'Senior Member',
+        ),
+    ) );
+	bp_register_member_type( 'fellow', array(
+        'labels' => array(
+            'name'          => 'Fellows',
+            'singular_name' => 'Fellow',
+        ),
+    ) );
+}
+add_action( 'bp_init', 'bbg_register_member_types' );
+
+// Admin Bar - Only for Admin
+if ( ! current_user_can( 'manage_options' ) ) {
+    show_admin_bar( false );
+}
+
+// Add Content to Member Directory
+function my_directory() {
+if ( bp_is_active( 'xprofile' ) )
+
+	if ( $location = xprofile_get_field_data( 'University/School', bp_get_member_user_id() ) ) :
+		echo '<br/><div class="University/School">';
+		echo $location;
+		echo '</div>';
+	endif;
+
+}
+add_filter ( 'bp_directory_members_item', 'my_directory' );
+
+// Custom Query Vars for Paper Filters
+function custom_query_vars_filter($vars) {
+  $vars[] = 'sortby';
+  $vars[] .= 'direction';
+  return $vars;
+}
+add_filter( 'query_vars', 'custom_query_vars_filter' );
+
+
+// Custom Pagination for Papers List
+function custom_pagination($numpages = '', $pagerange = '', $paged='') {
+
+  if (empty($pagerange)) {
+    $pagerange = 2;
+  }
+
+  /**
+   * This first part of our function is a fallback
+   * for custom pagination inside a regular loop that
+   * uses the global $paged and global $wp_query variables.
+   *
+   * It's good because we can now override default pagination
+   * in our theme, and use this function in default quries
+   * and custom queries.
+   */
+  global $paged;
+  if (empty($paged)) {
+    $paged = 1;
+  }
+  if ($numpages == '') {
+    global $wp_query;
+    $numpages = $wp_query->max_num_pages;
+    if(!$numpages) {
+        $numpages = 1;
+    }
+  }
+
+  /**
+   * We construct the pagination arguments to enter into our paginate_links
+   * function.
+   */
+  $pagination_args = array(
+    'base'            => get_pagenum_link(1) . '%_%',
+    'format'          => 'page/%#%',
+    'total'           => $numpages,
+    'current'         => $paged,
+    'show_all'        => False,
+    'end_size'        => 1,
+    'mid_size'        => $pagerange,
+    'prev_next'       => True,
+    'prev_text'       => __('&laquo;'),
+    'next_text'       => __('&raquo;'),
+    'type'            => 'plain',
+    'add_args'        => false,
+    'add_fragment'    => ''
+  );
+
+  $paginate_links = paginate_links($pagination_args);
+
+  if ($paginate_links) {
+    echo "<nav class='custom-pagination'>";
+      echo "<span class='page-numbers page-num'>Page " . $paged . " of " . $numpages . "</span> ";
+      echo $paginate_links;
+    echo "</nav>";
+  }
+
+}
+
+// Disable Default Buddypress Styles
+function my_dequeue_bp_styles() {
+	wp_dequeue_style( 'bp-legacy-css' );
+}
+add_action( 'wp_enqueue_scripts', 'my_dequeue_bp_styles', 20 );
+
 ?>
