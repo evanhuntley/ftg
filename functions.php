@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Add HTML5 theme support.
+ */
+function wpdocs_after_setup_theme() {
+    add_theme_support( 'html5', array( 'search-form' ) );
+}
+add_action( 'after_setup_theme', 'wpdocs_after_setup_theme' );
+
 add_theme_support( 'menus' );
 
 if ( function_exists('register_sidebar') )
@@ -118,19 +126,6 @@ if ( ! current_user_can( 'manage_options' ) ) {
     show_admin_bar( false );
 }
 
-// Add Content to Member Directory
-function my_directory() {
-if ( bp_is_active( 'xprofile' ) )
-
-	if ( $location = xprofile_get_field_data( 'University/School', bp_get_member_user_id() ) ) :
-		echo '<br/><div class="University/School">';
-		echo $location;
-		echo '</div>';
-	endif;
-
-}
-add_filter ( 'bp_directory_members_item', 'my_directory' );
-
 // Custom Query Vars for Paper Filters
 function custom_query_vars_filter($vars) {
   $vars[] = 'sortby';
@@ -204,5 +199,11 @@ function my_dequeue_bp_styles() {
 	wp_dequeue_style( 'bp-legacy-css' );
 }
 add_action( 'wp_enqueue_scripts', 'my_dequeue_bp_styles', 20 );
+
+// Remove Link in Profile Fields
+function remove_xprofile_links() {
+    remove_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_link_profile_data', 9, 2 );
+}
+add_action( 'bp_init', 'remove_xprofile_links' );
 
 ?>

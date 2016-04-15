@@ -12,6 +12,17 @@
         </div>
     </section>
 
+    <?php if ( !bp_is_member()) : ?>
+    <div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
+        <div class="container">
+            <?php if(function_exists('bcn_display'))
+            {
+                bcn_display();
+            }?>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <?php if ( bp_is_member()) : ?>
         <article role="main" class="primary-content type-profile">
     <?php else : ?>

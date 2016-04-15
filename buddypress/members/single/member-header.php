@@ -25,6 +25,16 @@ do_action( 'bp_before_member_header' ); ?>
 
 	</a>
 	<div class="name"><?php bp_displayed_user_fullname() ?></div>
+	<div class="type">
+		<?php
+			$member_type = bp_get_member_type( bp_displayed_user_id());
+		 	if ( $member_type ) {
+				echo $member_type;
+			} else {
+				echo 'Administrator';
+			}
+		?>
+	</div>
 </div><!-- #item-header-avatar -->
 
 <div id="item-header-content">

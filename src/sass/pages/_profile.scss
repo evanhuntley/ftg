@@ -2,7 +2,7 @@
     Profile
 =================================================================== */
 
-.profile, .my-account {
+.profile, .my-account, .bp-user {
 
     .avatar {
         border-radius: 50%;
@@ -15,7 +15,7 @@
     #item-header {
         position: absolute;
         width: 100%;
-        top: 80px;
+        top: $header_height - 75px;
 
         #item-header-avatar {
             @extend .container;
@@ -23,11 +23,24 @@
 
         .profile-image {
             float: left;
+            margin-right: 20px;
+        }
+
+        .name, .type {
+            width: 80%;
+            float: left;
+            color: #fff;
         }
 
         .name {
-            float: left;
-            color: #fff;
+            margin: 12px 0 2px;
+            @include font-size(1.5, 1.75);
+            font-weight: 700;
+        }
+
+        .type {
+            text-transform: capitalize;
+            color: rgba(255, 255, 255, .8);
         }
     }
 
@@ -54,11 +67,17 @@
             }
 
             a {
+                display: block;
+                padding: .5em .25em;
                 color: #333;
-                text-decoration: none;
+            }
+
+            li:first-child a {
+                padding-left: 0;
             }
 
             .current a {
+                font-weight: 700;
                 color: #000;
             }
         }
@@ -83,11 +102,54 @@
                         margin-right: 1em;
                     }
                 }
+
+                a {
+                    display: block;
+                    padding: .5em 0;
+                    font-size: .9em;
+                }
+
+                .current a {
+                    font-weight: 700;
+                }
             }
         }
     }
 
+    .profile-fields {
+        margin-bottom: 20px;
+
+        > div {
+            margin: 0 0 1em;
+
+            @include bp-l {
+                width: 33%;
+                float: left;
+                margin-bottom: 2em;
+            }
+        }
+
+        .label {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+    }
+
     .profile {
-        margin-top: 50px;
+        margin-top: 20px;
+    }
+
+    .member-information {
+        @extend %clearfix;
+    }
+}
+
+/* Edit Profile ---------------------------------------- */
+
+.profile-edit {
+
+    .field-visibility-settings-notoggle {
+        display: none;
     }
 }

@@ -24,19 +24,18 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 
 				<h4><?php bp_the_profile_group_name(); ?></h4>
 
-				<table class="profile-fields">
+				<div class="profile-fields">
 
 					<?php while ( bp_profile_fields() ) : bp_the_profile_field(); ?>
 
 						<?php if ( bp_field_has_data() ) : ?>
 
-							<tr<?php bp_field_css_class(); ?>>
+							<div<?php bp_field_css_class(); ?>>
 
-								<td class="label"><?php bp_the_profile_field_name(); ?></td>
+								<div class="label"><?php bp_the_profile_field_name(); ?></div>
 
-								<td class="data"><?php bp_the_profile_field_value(); ?></td>
-
-							</tr>
+								<div class="data"><?php echo strip_tags(bp_the_profile_field_value()); ?></div>
+							</div>
 
 						<?php endif; ?>
 
@@ -51,7 +50,7 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 
 					<?php endwhile; ?>
 
-				</table>
+				</div>
 			</div>
 
 			<?php
@@ -62,25 +61,47 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 		<?php endif; ?>
 
 	<?php endwhile; ?>
+	<div class="user-papers">
+	    <h4><?= __('Featured Work'); ?></h4>
+	        <?php
+	            $args = array(
+	                'post_type' => 'papers',
+	                'author' => bp_displayed_user_id()
+	            );
+	            $papers = new WP_Query( $args);
+				if ( $papers->have_posts() ) :
+			?>
+				<div class="paper-list">
+				<?php
+		            while ( $papers->have_posts() ) : $papers->the_post();
 
-    <h4>Papers</h4>
-
-        <?php
-            $args = array(
-                'post_type' => 'papers',
-                'author' => bp_displayed_user_id()
-            );
-            $papers = new WP_Query( $args);
-            while ( $papers->have_posts() ) : $papers->the_post();
-        ?>
-        <p>
-            <?php the_title(); ?>
-            <?php if ( bp_is_my_profile() ) : ?>
-                (<a href="<?php echo get_delete_post_link( $post->ID ); ?>">Delete</a>)</p>
-            <?php endif; ?>
-        <?php endwhile; ?>
-
-        <a class="btn" href="<?php echo site_url(); ?>/add-paper">Add a Paper</a>
+					$pdf = types_render_field('paper-upload', array("raw" => true));
+		        ?>
+				<article class="paper-item">
+	                <h2><?php the_title(); ?></h2>
+	                <div class="paper-meta">
+	                    <span class="tags"><i class="fa fa-tags"></i><?php echo get_the_tag_list('',',',''); ?></span>
+	                    <span class="download"><i class="fa fa-file-text"></i><a href="<?php echo $pdf; ?>">Download</a></span>
+						<?php if ( bp_is_my_profile() ) : ?>
+							<span class="delete"><i class="fa fa-times"></i><a href="<?php echo get_delete_post_link( $post->ID ); ?>">Delete</a></span>
+						<?php endif; ?>
+	                </div>
+	                <div class="abstract"><?php echo types_render_field('abstract', array("raw" => true)); ?></div>
+	            </article>
+		        <?php endwhile; ?>
+			</div>
+		<?php else : ?>
+			<?php if ( bp_is_my_profile() ) : ?>
+				<p>You haven't added any papers yet.</p>
+				<a class="btn" href="<?php echo site_url(); ?>/add-paper">Add a Paper</a>
+			<?php else : ?>
+				<p>This user has not added any papers yet.</p>
+			<?php endif; ?>
+		<?php endif; ?>
+			<?php if ( bp_is_my_profile() ) : ?>
+	        	<a class="btn" href="<?php echo site_url(); ?>/add-paper">Add a Paper</a>
+			<?php endif; ?>
+		</div>
 	<?php
 
 	/** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */

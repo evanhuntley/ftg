@@ -1,0 +1,47 @@
+/* ================================================================
+    Member List
+=================================================================== */
+
+.member-list {
+    @extend %clearfix;
+    list-style-type: none;
+
+    li {
+        @extend %clearfix;
+
+        @include bp-l {
+            float: left;
+            width: 45%;
+        }
+
+        .avatar {
+            float: left;
+            border-radius: 50%;
+            margin-right: 1em;
+        }
+
+        .item {
+            float: left;
+        }
+
+        .item-title {
+            margin: 16px 0 5px;
+            @include font-size(1.2, 1.2);
+        }
+
+        .type {
+            font-size: 14px;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .university {
+            font-size: 14px;
+            color: #aaa;
+
+            i {
+                margin-right: 5px;
+            }
+        }
+    }
+}

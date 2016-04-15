@@ -9,6 +9,9 @@ Version: 1.0
 @import
 	// "globals/debug",
 
+	// Dependencies
+	"../components/font-awesome/css/font-awesome.css",
+
 	"globals/reset",
 	"globals/settings",
 	"globals/typography",
@@ -23,4 +26,6 @@ Version: 1.0
 
     "pages/single",
     "pages/page",
-	"pages/profile";
+	"pages/profile",
+	"pages/papers",
+	"pages/members";

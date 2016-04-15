@@ -19,8 +19,17 @@ body {
     }
 }
 
+p {
+    margin-bottom : 1em;
+}
+
 a {
     color: #89c23f;
+    text-decoration: none;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 ul, ol {
@@ -55,4 +64,28 @@ figure {
 
 .page .um {
     opacity: 1;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 1em;
+    font-size: 14px;
+
+    th {
+        padding: .25em .5em;
+        font-size: 14px;
+        text-transform: uppercase;
+        text-align: left;
+        font-weight: 400;
+        color: #aaa;
+    }
+
+    td {
+        padding: .25em .5em;
+        border: 1px solid #ccc;
+    }
+
+    a[rel="tag"] {
+        margin-right: 5px;
+    }
 }

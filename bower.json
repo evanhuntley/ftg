@@ -16,6 +16,7 @@
     "jquery": "~1.11.3",
     "enquire": "~2.1.2",
     "html5shiv": "~3.7.3",
+    "font-awesome": "^4.6.1",
     "css3-mediaqueries-js": "~1.0.0"
   }
 }

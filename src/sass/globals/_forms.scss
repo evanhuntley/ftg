@@ -48,7 +48,7 @@ input[type="submit"], .btn {
     cursor: pointer;
     *overflow: visible;
     margin: .5em 0 0;
-    padding: .75em 1em;
+    padding: .5em 1em;
     border: none;
     color: #fff;
     text-transform: uppercase;
@@ -85,6 +85,16 @@ input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
     }
 
+input[type="text"], input[type="email"], input[type="password"] {
+    margin: 0 0 1em;
+    padding: .5em;
+    width: 100%;
+
+    @include bp-l {
+        width: 40%;
+    }
+}
+
 button::-moz-focus-inner,
 input::-moz-focus-inner {
     border: 0;
@@ -96,3 +106,17 @@ textarea {
     vertical-align: top;
     resize: vertical;
     }
+
+label {
+    display: block;
+    padding: .25em 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 400;
+    color: #aaa;
+}
+
+.editfield p {
+    margin: 0;
+}

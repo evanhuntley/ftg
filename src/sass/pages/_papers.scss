@@ -1,0 +1,64 @@
+/* ================================================================
+    Papers
+=================================================================== */
+
+.papers {
+
+    .searchform {
+        text-align: right;
+    }
+}
+
+/* Paper List --------------------------------------- */
+
+.paper-list {
+
+    .paper-item {
+        padding: 1.5em 0;
+    }
+
+    .paper-meta {
+        padding: 3px 0;
+        font-size: 14px;
+        border-bottom: 1px solid #ececec;
+    }
+
+    h2 {
+        margin-bottom: 4px;
+
+        .profile & {
+            @include font-size(1.2, 1.2);
+        }
+    }
+
+    .fa {
+        margin-right: .5em;
+        color: #b1b1b1;
+    }
+
+    .author, .tags {
+        margin-right: 1em;
+        color: #b1b1b1;
+    }
+
+    a[rel="tag"] {
+        margin-left: .25em;
+        border-radius: 4px;
+
+        &:first-of-type {
+            margin: 0;
+        }
+    }
+
+    .abstract {
+        margin: .75em 0 0;
+    }
+
+    .delete {
+        float: right;
+
+        a {
+            color: #D52A2A;
+        }
+    }
+}

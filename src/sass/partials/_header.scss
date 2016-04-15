@@ -61,7 +61,7 @@ header {
         min-height: 60px;
 
         @include bp-l {
-            min-height: 150px;
+            min-height: $header_height;
         }
     }
 
