@@ -206,4 +206,21 @@ function remove_xprofile_links() {
 }
 add_action( 'bp_init', 'remove_xprofile_links' );
 
+/* if a user uploads an avatar we store a meta */
+function ftg_user_uploaded_avatar(){
+	$user_id = bp_displayed_user_id();
+	if( !empty( $user_id ) )
+		update_user_meta( $user_id, 'ftg_user_uploaded_avatar', 1 );
+}
+add_action( 'xprofile_avatar_uploaded', 'ftg_user_uploaded_avatar');
+
+/* if a user deletes an avatar we delete the meta */
+function ftg_user_deleted_avatar( $args ) {
+	$user_id = bp_displayed_user_id();
+
+	if( !empty( $user_id ) )
+		delete_user_meta( $user_id, 'ftg_user_uploaded_avatar' );
+}
+add_action( 'bp_core_delete_existing_avatar', 'ftg_user_deleted_avatar', 10, 1 );
+
 ?>

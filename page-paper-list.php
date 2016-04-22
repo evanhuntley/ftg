@@ -41,7 +41,6 @@
             $author_link = add_query_arg(array('sortby' => 'author', 'direction' => 'ASC'), '/paper-index/');
         }
 
-
         $args = array(
             'post_type' => 'papers',
             'order' => $direction,
@@ -61,13 +60,18 @@
             while ( $papers->have_posts() ) : $papers->the_post();
 
             $pdf = types_render_field('paper-upload', array("raw" => true));
+            $url = types_render_field('paper-url', array("raw" => true));
         ?>
             <article class="paper-item">
                 <h2><?php the_title(); ?></h2>
                 <div class="paper-meta">
                     <span class="author"><i class="fa fa-user"></i><?php echo bp_core_get_userlink($post->post_author); ?></span>
                     <span class="tags"><i class="fa fa-tags"></i><?php echo get_the_tag_list('',',',''); ?></span>
-                    <span class="download"><i class="fa fa-file-text"></i><a href="<?php echo $pdf; ?>">Download</a></span>
+                    <?php if ( $pdf ) : ?>
+                        <span class="download"><i class="fa fa-file-text"></i><a href="<?php echo $pdf; ?>">Download</a></span>
+                    <?php elseif ($url) : ?>
+                        <span class="paper-url"><i class="fa fa-link"></i><a href="<?php echo $url; ?>">View Paper</a></span>
+                    <?php endif; ?>
                 </div>
                 <div class="abstract"><?php echo types_render_field('abstract', array("raw" => true)); ?></div>
             </article>
