@@ -89,3 +89,11 @@ table {
         margin-right: 5px;
     }
 }
+
+.info {
+    display: block;
+    padding: .25em .5em;
+    font-size: 13px;
+    border: 1px solid #67798d;
+    background: lighten(#67798d, 40%);
+}

@@ -223,4 +223,27 @@ function ftg_user_deleted_avatar( $args ) {
 }
 add_action( 'bp_core_delete_existing_avatar', 'ftg_user_deleted_avatar', 10, 1 );
 
+// Check if User has met Paper Limit
+function paper_limit_met($user_ID) {
+
+    $paper_annual_limit = 2;
+
+    $current_year = date("Y");
+
+    $args = array(
+        'post_type' => 'papers',
+        'author' => $user_ID,
+        'year' => $current_year
+    );
+
+    $paper_query = new WP_Query( $args );
+
+    if ($paper_query->post_count < $paper_annual_limit) {
+        return false;
+    } else {
+        return true;
+    }
+
+}
+
 ?>

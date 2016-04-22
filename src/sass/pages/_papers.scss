@@ -36,7 +36,7 @@
         color: #b1b1b1;
     }
 
-    .author, .tags {
+    .author, .tags, .date {
         margin-right: 1em;
         color: #b1b1b1;
     }
@@ -60,5 +60,16 @@
         a {
             color: #D52A2A;
         }
+    }
+
+    .edit {
+        float: right;
+        margin-right: 1em;
+    }
+
+    .published {
+        margin: .5em 0 0;
+        font-size: 12px;
+        font-style: italic;
     }
 }

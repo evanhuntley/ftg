@@ -73,47 +73,24 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 			?>
 				<div class="paper-list">
 				<?php
-		            while ( $papers->have_posts() ) : $papers->the_post();
+		            while ( $papers->have_posts() ) : $papers->the_post(); ?>
 
-					$pdf = types_render_field('paper-upload', array("raw" => true));
-					$url = types_render_field('paper-url', array("raw" => true));
-		        ?>
-				<article class="paper-item">
-	                <h2><?php the_title(); ?></h2>
-	                <div class="paper-meta">
-	                    <span class="tags"><i class="fa fa-tags"></i><?php echo get_the_tag_list('',',',''); ?></span>
-						<?php if ( $pdf ) : ?>
-							<span class="download"><i class="fa fa-file-text"></i><a href="<?php echo $pdf; ?>">Download</a></span>
-						<?php elseif ($url) : ?>
-							<span class="paper-url"><i class="fa fa-link"></i><a href="<?php echo $url; ?>">View Paper</a></span>
-						<?php endif; ?>
-						<?php if ( bp_is_my_profile() ) : ?>
-							<span class="delete"><i class="fa fa-times"></i><a href="<?php echo get_delete_post_link( $post->ID ); ?>">Delete</a></span>
-							<?php do_action('gform_update_post/setup_form', $post->ID); ?>
-						<?php endif; ?>
-	                </div>
-	                <div class="abstract"><?php echo types_render_field('abstract', array("raw" => true)); ?></div>
-					<?php
-						do_action('gform_update_post/edit_link', array(
-						    'post_id' => $post->ID,
-						    'url'     => home_url('/edit-paper/'),
-							'text'	  => 'Edit'
-						) );
-					?>
-	            </article>
+					<?php get_template_part( 'loop', 'papers' ); ?>
+
 		        <?php endwhile; ?>
 			</div>
 		<?php else : ?>
 			<?php if ( bp_is_my_profile() ) : ?>
 				<p>You haven't added any papers yet.</p>
-				<a class="btn" href="<?php echo site_url(); ?>/add-paper">Add a Paper</a>
 			<?php else : ?>
 				<p>This user has not added any papers yet.</p>
 			<?php endif; ?>
 		<?php endif; ?>
-			<?php if ( bp_is_my_profile() ) : ?>
-	        	<a class="btn" href="<?php echo site_url(); ?>/add-paper">Add a Paper</a>
-			<?php endif; ?>
+		<?php if ( bp_is_my_profile() && !paper_limit_met(bp_displayed_user_id())) : ?>
+			<a class="btn" href="<?php echo site_url(); ?>/add-paper">Add a Paper</a>
+		<?php elseif ( bp_is_my_profile()) : ?>
+			<p class="info">Note: You have already added two papers for this calendar year.  To add another, you must remove one of your <?php echo date('Y'); ?> submissions.</p>
+		<?php endif; ?>
 		</div>
 	<?php
 
