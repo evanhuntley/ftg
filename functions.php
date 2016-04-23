@@ -246,4 +246,35 @@ function paper_limit_met($user_ID) {
 
 }
 
+// Check if author First/Last is user match
+function check_for_author($author_name) {
+
+    $args = array(
+        'search'         => $author_name,
+    	'search_columns' => array( 'display_name' )
+    );
+
+    $authors = new WP_User_Query( $args );
+
+    if ($authors->get_total() > 0) {
+        // Return ID for
+        return bp_core_get_userlink($authors->get_results()[0]->ID);
+    } else {
+        return $author_name;
+    }
+}
+
+add_filter( 'gform_confirmation', 'custom_confirmation', 10, 4 );
+function custom_confirmation( $confirmation, $form, $entry, $ajax ) {
+    if( $form['id'] == '1' ) {
+        $confirmation = array( 'redirect' => bp_loggedin_user_domain() . '#user-papers' );
+    }
+    return $confirmation;
+}
+
+function my_deregister_scripts(){
+  wp_deregister_script( 'wp-embed' );
+}
+add_action( 'wp_footer', 'my_deregister_scripts' );
+
 ?>

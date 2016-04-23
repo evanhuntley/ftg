@@ -23,23 +23,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="ClearType" content="true" />
 
-<!-- The little things -->
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
     <link rel="shortcut icon" href="<?php echo bloginfo('template_directory'); ?>/favicon.png">
 	<link rel="apple-touch-icon" href="<?php echo bloginfo('template_directory'); ?>/apple-touch-icon-precomposed.png"/>
-<!-- The little things -->
 
-<!-- Stylesheets -->
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="<?php echo bloginfo('template_directory'); ?>/assets/css/style.css" />
-<!-- Stylesheets -->
 
-<!-- Load scripts quick smart -->
-
-<!-- Load scripts quick smart -->
-
-	<?php wp_deregister_script('jquery');wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?> id="top">

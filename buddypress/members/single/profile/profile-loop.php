@@ -61,7 +61,7 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 		<?php endif; ?>
 
 	<?php endwhile; ?>
-	<div class="user-papers">
+	<div class="user-papers" id="user-papers">
 	    <h4><?= __('Featured Work'); ?></h4>
 	        <?php
 	            $args = array(
@@ -93,7 +93,6 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 		<?php endif; ?>
 		</div>
 	<?php
-
 	/** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
 	do_action( 'bp_profile_field_buttons' ); ?>
 

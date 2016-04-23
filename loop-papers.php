@@ -2,14 +2,26 @@
 	$pdf = types_render_field('paper-upload', array("raw" => true));
 	$url = types_render_field('paper-url', array("raw" => true));
 	$published_details = types_render_field('published-details', array("raw" => true));
+	$additional_authors = types_render_field('additional-authors', array("raw" => true));
 ?>
 <article class="paper-item">
 <h2><?php the_title(); ?></h2>
 <div class="paper-meta">
-	<?php if ( !bp_is_my_profile()) : ?>
-		<span class="author"><i class="fa fa-user"></i><?php echo bp_core_get_userlink($post->post_author); ?></span>
-	<?php endif; ?>
+	<span class="author"><i class="fa fa-user"></i>
+		<?php echo bp_core_get_userlink($post->post_author); ?>
+		<?php
+			if ( $additional_authors ) {
+				$authors = explode(',', $additional_authors);
+				foreach($authors as $author) {
+					echo ', ';
+					echo check_for_author($author);
+				}
+			}
+		?>
+	</span>
+	<?php if (get_the_tag_list()) : ?>
 		<span class="tags"><i class="fa fa-tags"></i><?php echo get_the_tag_list('',',',''); ?></span>
+	<?php endif; ?>
 		<span class="date"><i class="fa fa-calendar"></i><?php echo get_the_date(); ?></span>
 	<?php if ( $pdf ) : ?>
 		<span class="download"><i class="fa fa-file-text"></i><a href="<?php echo $pdf; ?>">Download</a></span>

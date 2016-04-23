@@ -1,7 +1,6 @@
 {
     "outputFileName" : "scripts.js",
     "dependencies" : [
-        "src/components/jquery/dist/jquery.js",
         "src/components/enquire/dist/enquire.js"
     ],
     "public" : [
