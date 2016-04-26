@@ -12,6 +12,7 @@ add_theme_support( 'menus' );
 
 if ( function_exists('register_sidebar') )
 	register_sidebar(array(
+        'id' => 'sidebar-1',
 		'before_widget' => '<aside>',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3>',
@@ -276,5 +277,22 @@ function my_deregister_scripts(){
   wp_deregister_script( 'wp-embed' );
 }
 add_action( 'wp_footer', 'my_deregister_scripts' );
+
+add_filter( 'protected_title_format', 'remove_protected_text' );
+function remove_protected_text() {
+	return __('%s');
+}
+
+add_filter( 'the_password_form', 'custom_password_form' );
+function custom_password_form() {
+	global $post;
+	$label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
+	$o = '<form class="protected-post-form" action="' . get_option('siteurl') . '/wp-login.php?action=postpass" method="post">
+	' . __( "<p>Please enter the registration password to proceed.</p>" ) . '
+	<label for="' . $label . '">' . __( "Registration Password" ) . ' </label><input name="post_password" id="' . $label . '" type="password" size="20" /><input type="submit" name="Submit" value="' . esc_attr__( "Submit" ) . '" />
+	</form>
+	';
+	return $o;
+}
 
 ?>

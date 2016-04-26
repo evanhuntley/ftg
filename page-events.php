@@ -22,8 +22,15 @@
             <div class="events-list">
             <?php
                 while ( $events->have_posts() ) : $events->the_post();
+
+                $date = types_render_field("event-date", array("format" => "M j, Y"));
+                $location = types_render_field("location-short-name", array("raw" => true));
             ?>
-                <?php the_title(); ?>
+                <h2><a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                <div class="event-details">
+                    <span class="date"><i class="fa fa-calendar"></i><?php echo $date; ?></span>
+                    <span class="location"><i class="fa fa-map-marker"></i><?php echo $location; ?></span>
+                </div>
             <?php endwhile; ?>
             </div>
         </section>

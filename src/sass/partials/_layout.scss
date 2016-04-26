@@ -18,5 +18,19 @@
 }
 
 .primary-content {
+    @extend %clearfix;
     padding: 1em 0;
+
+    aside {
+
+        @include bp-l {
+            float: left;
+            width: 30%;
+        }
+    }
+
+    .content-block {
+        float: right;
+        width: 65%;
+    }
 }

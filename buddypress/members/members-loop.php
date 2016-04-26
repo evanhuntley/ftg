@@ -63,8 +63,9 @@ do_action( 'bp_before_members_loop' ); ?>
 						}
 					?>
 				</div>
+				
 				<div class="university">
-					<i class="fa fa-university"></i><?php echo bp_member_profile_data('field=University/School'); ?>
+					<i class="fa fa-university"></i><?php echo bp_member_profile_data('field=Institution'); ?>
 				</div>
 
 				<?php
