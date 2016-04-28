@@ -14,8 +14,9 @@ header {
         font-family: 'Lato', Arial, sans-serif;
 
         @include bp-xl {
-            width: 70%;
             float: right;
+            width: 70%;
+            margin: .5em 0 0;
 
             ul {
                 margin: 0;
@@ -25,12 +26,14 @@ header {
 
             li {
                 display: inline-block;
+                margin-left: 1em;
 
                 a {
                     display: block;
                     padding: 1em;
                     color: #fff;
-                    color: rgba(255, 255, 255, 0.8);
+                    color: rgba(255, 255, 255, 1);
+                    font-weight: 700;
                     text-decoration: none;
                 }
             }
@@ -38,13 +41,20 @@ header {
     }
 
     .logo {
-        margin: 1em 0 0;
-        color: #fff;
-        font-size: 20px;
-        text-decoration: none;
+        display: block;
+        background: url('../img/l_ftg.png');
+        background: url('../img/l_ftg.svg'),
+        linear-gradient(transparent, transparent);
+        background-repeat: no-repeat;
+        border: 0;
+        font: 0/0 a;
+        text-shadow: none;
+        color: transparent;
 
         @include bp-xl {
-            width: 30%;
+            margin: 16px 0 0;
+            width: 300px;
+            height: 57px;
             float: left;
         }
     }

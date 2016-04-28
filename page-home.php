@@ -3,11 +3,16 @@
 ?>
 <?php get_header(); ?>
 
+<?php
+    $main_title = types_render_field('hero-main-title', array("raw" => true));
+    $subtitle = types_render_field('hero-subtitle', array("raw" => true));
+?>
+
 <section class="section-header home-hero">
     <div class="container">
         <div class="hero-copy">
-            <h1>We Know Finance</h1>
-            <p>Now get to know us...</p>
+            <h1><?= $main_title; ?></h1>
+            <p><?= $subtitle; ?></p>
         </div>
     </div>
 </section>
@@ -25,16 +30,23 @@
 
                 $args = array(
                     'post_type' => 'events',
-                    'posts_per_page' => 3,
+                    'posts_per_page' => 1,
                     'post__not_in' => $premium_ids,
                     'orderby' => 'meta_value',
                     'meta_key'  => 'wpcf-event-date',
                     'order' => 'DESC'
                 );
                 $events = new WP_Query( $args);
+
+                $date = get_post_meta($events->get_posts()[0]->ID, 'wpcf-event-date', true);
             ?>
 
             <div class="events-list">
+            <?php if (rcp_is_active() && ($date > time())) : ?>
+                <h2>Upcoming Meeting</h2>
+            <?php else : ?>
+                <h2>Our Latest Meeting</h2>
+            <?php endif; ?>
             <?php
                 while ( $events->have_posts() ) : $events->the_post();
             ?>
@@ -43,13 +55,13 @@
             </div>
         </section>
         <section class="featured-work">
+            <h2>Our Work</h2>
+            <p>Recent papers from our members.</p>
             <?php
                 $args = array(
                     'post_type' => 'papers',
-                    'order' => RAND,
-                    'orderby' => $sortby,
-                    'posts_per_page' => 5,
-                    'paged' => $paged
+                    'orderby' => 'date',
+                    'posts_per_page' => 3
                 );
                 $papers = new WP_Query( $args);
             ?>
@@ -58,7 +70,7 @@
             <?php
                 while ( $papers->have_posts() ) : $papers->the_post();
             ?>
-                <?php the_title(); ?>
+                <?php get_template_part('loop', 'papers'); ?>
             <?php endwhile; ?>
             </div>
         </section>
@@ -67,6 +79,7 @@
 
 <section class="featured-members">
     <div class="container">
+        <h2>Our Members</h2>
         <?php
             $args = array( 'type' => 'random', 'max' => 3, 'meta_key' => 'ftg_user_uploaded_avatar', 'meta_value' => 1 );
             if ( bp_has_members( $args ) ) : ?>
@@ -77,4 +90,4 @@
     </div>
 </section>
 
-<?php get_footer( 'no-sidebar' ); // will include footer-no-sidebar.php; ?>
+<?php get_footer(); ?>

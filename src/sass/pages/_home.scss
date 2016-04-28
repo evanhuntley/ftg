@@ -34,4 +34,33 @@
             right: 0;
         }
     }
+
+    .featured-content {
+        @extend %clearfix;
+
+        .featured-event {
+            margin: 1em 0;
+
+            @include bp-l {
+                float: left;
+                width: 50%;
+                padding-right: 2em;
+                border-right: 1px dashed #ccc;
+            }
+        }
+
+        .featured-work {
+            margin: 1em 0;
+
+            @include bp-l {
+                float: right;
+                width: 50%;
+                padding-left: 2em;
+            }
+        }
+    }
+
+    .featured-members {
+        background: #67798d;
+    }
 }

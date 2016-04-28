@@ -1,8 +1,6 @@
-<?php get_sidebar(); ?>
-
 <footer role="contentinfo">
 	<div class="container">
-		<p>&copy;<?php echo date("Y"); ?> <a href="#top" title="Jump back to top">&#8593;</a></p>
+		<p class="copyright">&copy;<?php echo date("Y"); ?> Finance Theory Group.  All Rights Reserved.</p>
 	</div>
 </footer>
 
@@ -10,7 +8,5 @@
 
 <?php wp_footer(); ?>
 
-
-<?php if ( is_singular() ) wp_print_scripts( 'comment-reply' ); ?>
 </body>
 </html>
