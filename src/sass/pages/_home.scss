@@ -5,10 +5,10 @@
 .home {
 
     .section-header {
-        background: url('../img/bg_home.jpg');
+        background-image: url('../img/bg_home.jpg');
 
         .container {
-
+            min-height: 300px;
             @include bp-l {
                 min-height: 400px;
             }
@@ -17,10 +17,14 @@
         h1 {
             position: static;
             margin: 0 0 .5em;
-            @include font-size(4, 1.5);
             color: #89c23f;
+            @include font-size(2, 2.2);
             text-transform: uppercase;
             letter-spacing: 1px;
+
+            @include bp-l {
+                @include font-size(4, 1.5);
+            }
         }
 
         p {
@@ -29,17 +33,36 @@
         }
 
         .hero-copy {
-            position: absolute;
-            top: 45%;
-            right: 0;
+            padding-top: 100px;
+            text-align: center;
+
+            @include bp-l {
+                width: auto;
+                position: absolute;
+                top: 45%;
+                right: 0;
+                text-align: right;
+                padding: 0;
+            }
         }
     }
 
     .featured-content {
         @extend %clearfix;
+        margin: 3.5em 0 0;
+
+        .featured-work > h2, .featured-event > h2 {
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 1px;
+            color: lighten(#67798d, 15%);
+
+            @include bp-l {
+                @include font-size(2, 1.5);
+            }
+        }
 
         .featured-event {
-            margin: 1em 0;
 
             @include bp-l {
                 float: left;
@@ -50,17 +73,26 @@
         }
 
         .featured-work {
-            margin: 1em 0;
 
             @include bp-l {
                 float: right;
                 width: 50%;
                 padding-left: 2em;
             }
+
+            .paper-item:first-child {
+                padding-top: 0;
+            }
         }
     }
 
     .featured-members {
+        padding: 2em 0;
         background: #67798d;
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+        }
     }
 }

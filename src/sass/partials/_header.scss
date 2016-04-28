@@ -13,10 +13,10 @@ header {
     nav {
         font-family: 'Lato', Arial, sans-serif;
 
-        @include bp-xl {
+        @include bp-l {
             float: right;
             width: 70%;
-            margin: .5em 0 0;
+            margin: 1em 0 0;
 
             ul {
                 margin: 0;
@@ -32,16 +32,19 @@ header {
                     display: block;
                     padding: 1em;
                     color: #fff;
-                    color: rgba(255, 255, 255, 1);
-                    font-weight: 700;
-                    text-decoration: none;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
                 }
             }
         }
     }
 
     .logo {
+        float: left;
         display: block;
+        width: 240px;
+        height: 45px;
+        margin: 10px 0;
         background: url('../img/l_ftg.png');
         background: url('../img/l_ftg.svg'),
         linear-gradient(transparent, transparent);
@@ -55,7 +58,6 @@ header {
             margin: 16px 0 0;
             width: 300px;
             height: 57px;
-            float: left;
         }
     }
 }

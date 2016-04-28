@@ -40,8 +40,6 @@
 
                 $date = get_post_meta($events->get_posts()[0]->ID, 'wpcf-event-date', true);
             ?>
-
-            <div class="events-list">
             <?php if (rcp_is_active() && ($date > time())) : ?>
                 <h2>Upcoming Meeting</h2>
             <?php else : ?>
@@ -49,19 +47,25 @@
             <?php endif; ?>
             <?php
                 while ( $events->have_posts() ) : $events->the_post();
+
+                $description = types_render_field("event-short-description", array("raw" => true));
+                $date = types_render_field("event-date", array("format" => "M j, Y"));
+                $location = types_render_field("location-short-name", array("raw" => true));
             ?>
-                <?php the_title(); ?>
+                <a href="<?= get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>"><img src="<?php echo the_post_thumbnail_url('event-feature'); ?>"></a>
+                <span class="date"><?= $date; ?></date>
+                <span class="location"><?= $location; ?></date>
+                <div class="description"><?php echo $description; ?></div>
             <?php endwhile; ?>
-            </div>
+            <a class="btn" href="/ftg-events/">View all events</a>
         </section>
         <section class="featured-work">
-            <h2>Our Work</h2>
-            <p>Recent papers from our members.</p>
+            <h2>Recent Work</h2>
             <?php
                 $args = array(
                     'post_type' => 'papers',
                     'orderby' => 'date',
-                    'posts_per_page' => 3
+                    'posts_per_page' => 2
                 );
                 $papers = new WP_Query( $args);
             ?>

@@ -295,4 +295,11 @@ function custom_password_form() {
 	return $o;
 }
 
+// Custom Image Sizes
+add_action( 'after_setup_theme', 'ftg_theme_setup' );
+function ftg_theme_setup() {
+  add_image_size( 'event-feature', 600, 225, true ); // (cropped)
+  add_image_size( 'event-thumb', 300, 300, true ); // (cropped)
+}
+
 ?>

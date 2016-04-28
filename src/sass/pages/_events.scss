@@ -5,3 +5,49 @@
 .event-id {
     display: none;
 }
+
+.events-list {
+    margin: 0;
+    list-style-type: none;
+
+    li {
+        @extend %clearfix;
+        margin: 0 0 2em;
+    }
+
+    img {
+        width: 150px;
+        height: 150px;
+        float: left;
+        margin: 0 1em 0 0;
+    }
+}
+
+/* Single Event --------------------------------------------- */
+
+.type-event {
+
+    table {
+        border: none;
+
+        td:first-child {
+            width: 20%;
+            text-transform: uppercase;
+            color: #aaa;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 1em;
+            border: none;
+        }
+
+        tr {
+            border-bottom: 1px solid #ececec;
+
+            &:first-child {
+                border-top: 1px solid #ececec;
+            }
+        }
+    }
+}
