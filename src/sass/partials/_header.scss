@@ -35,6 +35,10 @@ header {
                     text-transform: uppercase;
                     letter-spacing: 1px;
                 }
+
+                &:last-child a {
+                    padding-right: 0;
+                }
             }
         }
     }
@@ -58,6 +62,71 @@ header {
             margin: 16px 0 0;
             width: 300px;
             height: 57px;
+        }
+    }
+
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        top: 24px;
+        right: 10px;
+        width: 46px;
+        height: 46px;
+        border: none;
+        background: transparent;
+        z-index: 999;
+        transition: all 250ms ease-in-out;
+
+        @include bp-l {
+            display: none;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        span {
+            left: 6px;
+        }
+
+        span, span:before, span:after {
+          cursor: pointer;
+          border-radius: 1px;
+          height: 5px;
+          width: 35px;
+          background: #fff;
+          position: absolute;
+          display: block;
+          content: '';
+          transition: all 250ms ease-in-out;
+        }
+
+        span:before {
+          top: -10px;
+        }
+
+        span:after {
+          bottom: -10px;
+        }
+
+        &.active {
+
+            span {
+                background-color: transparent;
+            }
+
+            span:before, span:after {
+                top: 0;
+                background-color: #fff;
+            }
+
+            span:before {
+                transform: rotate(45deg);
+            }
+
+            span:after {
+                transform: rotate(-45deg);
+            }
         }
     }
 }

@@ -19,7 +19,9 @@ do_action( 'bp_before_members_loop' ); ?>
 	<p class="current-member-type"><?php bp_current_member_type_message() ?></p>
 <?php endif; ?>
 
-<?php if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&type=alphabetical' ) ) : ?>
+<?php
+
+if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&type=alphabetical&exclude=1' ) ) : ?>
 
 	<div id="pag-top" class="pagination">
 
@@ -63,9 +65,11 @@ do_action( 'bp_before_members_loop' ); ?>
 						}
 					?>
 				</div>
-				
+
 				<div class="university">
-					<i class="fa fa-university"></i><?php echo bp_member_profile_data('field=Institution'); ?>
+					<?php if (bp_get_member_profile_data('field=Institution')) : ?>
+						<i class="fa fa-university"></i><?php echo bp_get_member_profile_data('field=Institution'); ?>
+					<?php endif; ?>
 				</div>
 
 				<?php

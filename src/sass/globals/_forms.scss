@@ -58,6 +58,18 @@ input[type="submit"], .btn {
     letter-spacing: 1px;
     background: #89c23f;
     border-radius: 5px;
+
+    &:hover {
+        background: darken(#89c23f, 10%);
+    }
+
+    &.alt {
+        background: #67798d;
+
+        &:hover {
+            background: #344559;
+        }
+    }
 }
 
 button[disabled],

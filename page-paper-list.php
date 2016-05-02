@@ -80,6 +80,18 @@
             <li><a href="<?php echo $date_link; ?>"><?= __('Sort by Submission Date'); ?></a></li>
             <li><a href="/paper-index/"><?= __('Reset All'); ?></a></li>
         </ul>
+        <?php
+            $tags = get_tags();
+            $html = '<p>Tags:</p><ul class="tags">';
+            foreach ( $tags as $tag ) {
+            	$tag_link = get_tag_link( $tag->term_id );
+
+            	$html .= "<li><a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}'>";
+            	$html .= "{$tag->name}</a></li>";
+            }
+            $html .= '</ul>';
+            echo $html;
+        ?>
     </aside>
 
     <div class="paper-list content-block">

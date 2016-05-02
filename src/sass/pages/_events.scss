@@ -16,10 +16,33 @@
     }
 
     img {
-        width: 150px;
-        height: 150px;
-        float: left;
-        margin: 0 1em 0 0;
+        width: 200px;
+        height: 200px;
+        margin: 0 0 1em 0;
+
+        @include bp-l {
+            width: 150px;
+            height: 150px;
+            float: left;
+            margin: 0 1em 0 0;
+        }
+    }
+
+    h2 {
+        margin-bottom: .25em;
+    }
+
+    span {
+        margin-right: 1em;
+        color: #8e8e8e;
+
+        i {
+            margin-right: 5px;
+        }
+    }
+
+    .description {
+        padding: .5em 0 0;
     }
 }
 
@@ -27,6 +50,116 @@
 
 .type-event {
 
+    .event-image {
+
+        @include bp-l {
+            width: 60%;
+            float: left;
+        }
+    }
+
+    /* RSVP Form */
+    .gform_wrapper, .gforms_confirmation_message {
+        margin: 1em 0 0;
+
+        @include bp-l {
+            width: 40%;
+            padding: 0 0 0 2em;
+            float: right;
+        }
+
+        h3.gform_title {
+            display: none;
+        }
+
+        .gform_description {
+            @include font-size(1.5, 2);
+            margin: 0 0 1em;
+            color: #152b4a;
+            font-weight: 700;
+        }
+
+        .top_label .gfield_label {
+            display: none;
+        }
+
+        .gfield_radio {
+            margin: 1em 0 0 !important;
+
+            li {
+                display: inline-block;
+            }
+
+            input[type="radio"] {
+              width: 0px;
+              height: 0px;
+              display: none;
+            }
+
+            label {
+              border: 1px solid lighten(#67798d, 30%);;
+              border-radius: 5px;
+              color: #666666;
+              padding: .5em 2em;
+              font-size: 1em;
+              cursor: pointer;
+              font-weight: 700;
+              margin-left: 0;
+              margin-right: 5px;
+            }
+
+            label {
+              *display: inline;
+            }
+
+            label:hover {
+              color: #333333;
+            }
+
+            /* Yes */
+            label:active, label.active {
+              background: lighten(#67798d, 40%);
+            }
+
+            input:checked + label, label.selected {
+              background: lighten(#67798d, 40%);
+              border-radius: 5px;
+              color: #000;
+            }
+        }
+
+        .gform_footer {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .event-details {
+        float: left;
+        clear: both;
+
+        .date, .location {
+            display: block;
+            margin: 1em 0;
+            color: #8e8e8e;
+            @include font-size(1.2, 2);
+
+            i {
+                margin: 0 5px 0 0;
+            }
+        }
+    }
+
+    .description {
+        margin: 0 0 1em;
+    }
+
+    .content {
+        float: left;
+        clear: both;
+    }
+
+    /* Agenda Table */
     table {
         border: none;
 

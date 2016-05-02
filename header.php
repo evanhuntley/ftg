@@ -38,6 +38,7 @@
     <header role="banner">
 		<div class="container">
 	        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="logo"><?php bloginfo( 'name' ); ?></a>
+			<a class="nav-toggle" href="#"><span></span></a>
 	        <nav role="navigation">
 	            <?php
 	                $args = array(

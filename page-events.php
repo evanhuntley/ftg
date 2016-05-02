@@ -21,8 +21,20 @@
 <section role="main" class="primary-content">
     <div class="container">
             <?php
+                // Only show the appopriate events based on permissions.
+                if ( !rcp_is_active() ) {
+                    $premium_ids = rcp_get_paid_posts();
+                } else {
+                    $premium_ids = [];
+                }
+
                 $args = array(
-                    'post_type' => 'events'
+                    'post_type' => 'events',
+                    'posts_per_page' => 8,
+                    'post__not_in' => $premium_ids,
+                    'orderby' => 'meta_value',
+                    'meta_key'  => 'wpcf-event-date',
+                    'order' => 'DESC'
                 );
                 $events = new WP_Query( $args);
             ?>

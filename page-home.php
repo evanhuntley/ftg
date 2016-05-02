@@ -41,9 +41,9 @@
                 $date = get_post_meta($events->get_posts()[0]->ID, 'wpcf-event-date', true);
             ?>
             <?php if (rcp_is_active() && ($date > time())) : ?>
-                <h2>Upcoming Meeting</h2>
+                <h2>Upcoming Event</h2>
             <?php else : ?>
-                <h2>Our Latest Meeting</h2>
+                <h2>Our Latest Event</h2>
             <?php endif; ?>
             <?php
                 while ( $events->have_posts() ) : $events->the_post();
@@ -52,12 +52,15 @@
                 $date = types_render_field("event-date", array("format" => "M j, Y"));
                 $location = types_render_field("location-short-name", array("raw" => true));
             ?>
+            <div class="event">
                 <a href="<?= get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>"><img src="<?php echo the_post_thumbnail_url('event-feature'); ?>"></a>
-                <span class="date"><?= $date; ?></date>
-                <span class="location"><?= $location; ?></date>
+                <h2><a href="<?= get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>"><?php echo get_the_title(); ?></a></h2>
+                <span class="date"><i class="fa fa-calendar"></i><?= $date; ?></span>
+                <span class="location"><i class="fa fa-map-marker"></i><?= $location; ?></span>
                 <div class="description"><?php echo $description; ?></div>
+            </div>
             <?php endwhile; ?>
-            <a class="btn" href="/ftg-events/">View all events</a>
+            <a class="btn alt" href="/ftg-events/">View all events</a>
         </section>
         <section class="featured-work">
             <h2>Recent Work</h2>
@@ -77,6 +80,7 @@
                 <?php get_template_part('loop', 'papers'); ?>
             <?php endwhile; ?>
             </div>
+            <a class="btn alt" href="/paper-index/">View all papers</a>
         </section>
     </div>
 </section>
@@ -85,11 +89,46 @@
     <div class="container">
         <h2>Our Members</h2>
         <?php
-            $args = array( 'type' => 'random', 'max' => 3, 'meta_key' => 'ftg_user_uploaded_avatar', 'meta_value' => 1 );
+            $args = array(
+                'type' => 'random',
+                'max' => 3,
+                'member_type' => array( 'member', 'senior-member', 'fellow' ),
+                //'meta_key' => 'ftg_user_uploaded_avatar',
+                //'meta_value' => 1
+            );
             if ( bp_has_members( $args ) ) : ?>
-                <?php while ( bp_members() ) : bp_the_member(); ?>
-                    <a href="<?php bp_member_permalink() ?>"><?php bp_member_avatar('type=full&width=125&height=125') ?></a>
-                <?php endwhile; ?>
+            <ul class="members-list">
+            <?php while ( bp_members() ) : bp_the_member(); ?>
+
+                <li <?php bp_member_class(); ?>>
+                    <div class="item-avatar">
+                        <a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar('type=full&height=150&width=150'); ?></a>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-title">
+                            <a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
+                        </div>
+                        <div class="type">
+                            <?php
+                                $member_type = bp_get_member_type( bp_get_member_user_id(), false )[0];
+                                if ( $member_type ) {
+                                    echo $member_type;
+                                } else {
+                                    echo 'Administrator';
+                                }
+                            ?>
+                        </div>
+
+                        <div class="university">
+                            <?php if (bp_get_member_profile_data('field=Institution')) : ?>
+                                <i class="fa fa-university"></i><?php echo bp_get_member_profile_data('field=Institution'); ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </li>
+            <?php endwhile; ?>
+            </ul>
         <?php endif; ?>
     </div>
 </section>
