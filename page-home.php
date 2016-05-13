@@ -25,7 +25,7 @@
                 if ( !rcp_is_active() ) {
                     $premium_ids = rcp_get_paid_posts();
                 } else {
-                    $premium_ids = [];
+                    $premium_ids = array();
                 }
 
                 $args = array(
@@ -38,7 +38,10 @@
                 );
                 $events = new WP_Query( $args);
 
-                $date = get_post_meta($events->get_posts()[0]->ID, 'wpcf-event-date', true);
+                $idArray =  $events->get_posts();
+                $id = $idArray[0]->ID;
+
+                $date = get_post_meta($id, 'wpcf-event-date', true);
             ?>
             <?php if (rcp_is_active() && ($date > time())) : ?>
                 <h2>Upcoming Event</h2>
@@ -111,7 +114,8 @@
                         </div>
                         <div class="type">
                             <?php
-                                $member_type = bp_get_member_type( bp_get_member_user_id(), false )[0];
+                                $type_array = bp_get_member_type( bp_get_member_user_id(), false );
+                                $member_type = $type_array[0];
                                 if ( $member_type ) {
                                     echo $member_type;
                                 } else {

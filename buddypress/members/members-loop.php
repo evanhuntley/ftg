@@ -21,7 +21,9 @@ do_action( 'bp_before_members_loop' ); ?>
 
 <?php
 
-if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&type=alphabetical&exclude=1' ) ) : ?>
+$active = get_active_users();
+
+if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&type=alphabetical&include=' . $active ) ) : ?>
 
 	<div id="pag-top" class="pagination">
 
@@ -57,7 +59,9 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&type=alphabetical&excl
 				</div>
 				<div class="type">
 					<?php
-						$member_type = bp_get_member_type( bp_get_member_user_id(), false )[0];
+						$member_type_array = bp_get_member_type( bp_get_member_user_id(), false );
+
+						$member_type = $member_type_array[0];
 						if ( $member_type ) {
 							echo $member_type;
 						} else {

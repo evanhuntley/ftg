@@ -259,11 +259,36 @@ function check_for_author($author_name) {
 
     if ($authors->get_total() > 0) {
         // Return ID for
-        return bp_core_get_userlink($authors->get_results()[0]->ID);
+        $id = $authors->get_results();
+        $id2 = $id[0]->ID;
+        return bp_core_get_userlink($id2);
     } else {
         return $author_name;
     }
 }
+
+// Get Cancelled/Expired Users
+function get_active_users() {
+    $args = array(
+         'meta_key' => 'rcp_status',
+         'meta_value' => 'active',
+     );
+
+     $userQuery = new WP_User_Query($args);
+     $users_list = '';
+     $i = 0;
+
+     foreach($userQuery->results as $user) {
+         $users_list .= $user->ID;
+         if ($i !== 0) {
+             $users_list .= ', ';
+         }
+         $i++;
+     }
+
+     return $users_list;
+}
+
 
 add_filter( 'gform_confirmation', 'custom_confirmation', 10, 4 );
 function custom_confirmation( $confirmation, $form, $entry, $ajax ) {

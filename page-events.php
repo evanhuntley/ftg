@@ -25,7 +25,7 @@
                 if ( !rcp_is_active() ) {
                     $premium_ids = rcp_get_paid_posts();
                 } else {
-                    $premium_ids = [];
+                    $premium_ids = array();
                 }
 
                 $args = array(

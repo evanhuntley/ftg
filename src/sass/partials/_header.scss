@@ -11,15 +11,64 @@ header {
     z-index: 50;
 
     nav {
+        position: absolute;
+        width: 95%;
+        margin: 9px 0 0;
+        padding: 2em 0;
         font-family: 'Lato', Arial, sans-serif;
 
+        ul {
+            margin: 0;
+            display: none;
+        }
+
+        li {
+            display: block;
+            text-align: center;
+
+            a {
+                display: block;
+                padding: .5em 1em;
+                color: #fff;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+        }
+
+        &.open {
+            opacity: 0;
+            background: #0C1E38;
+            animation: fade ease-in-out .4s;
+            animation-fill-mode: forwards;
+
+            ul {
+                display: block;
+            }
+        }
+
+        @include bp-m {
+            width: 50%;
+            right: 2.5%;
+        }
+
         @include bp-l {
+            width: 33%;
+        }
+
+        @include bp-xl {
+            position: static;
             float: right;
             width: 70%;
             margin: 1em 0 0;
+            padding: 0;
+
+            &.open {
+                background: transparent;
+            }
 
             ul {
-                margin: 0;
+                display: block;
                 padding: 0;
                 float: right;
             }
@@ -27,13 +76,10 @@ header {
             li {
                 display: inline-block;
                 margin-left: 1em;
+                text-align: left;
 
                 a {
-                    display: block;
                     padding: 1em;
-                    color: #fff;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
                 }
 
                 &:last-child a {
@@ -68,16 +114,16 @@ header {
     .nav-toggle {
         display: block;
         position: absolute;
-        top: 24px;
-        right: 10px;
-        width: 46px;
-        height: 46px;
+        top: 30px;
+        right: 2.5%;
+        width: 42px;
+        height: 42px;
         border: none;
         background: transparent;
         z-index: 999;
         transition: all 250ms ease-in-out;
 
-        @include bp-l {
+        @include bp-xl {
             display: none;
         }
 
@@ -92,8 +138,8 @@ header {
         span, span:before, span:after {
           cursor: pointer;
           border-radius: 1px;
-          height: 5px;
-          width: 35px;
+          height: 3px;
+          width: 30px;
           background: #fff;
           position: absolute;
           display: block;

@@ -30,7 +30,10 @@
     }
 
     .content-block {
-        float: right;
-        width: 65%;
+
+        @include bp-l {
+            float: right;
+            width: 65%;            
+        }
     }
 }

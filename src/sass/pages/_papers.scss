@@ -11,6 +11,10 @@
 
 /* Paper List --------------------------------------- */
 
+.user-papers {
+    clear: both;
+}
+
 .paper-list {
 
     .paper-item {
@@ -19,7 +23,7 @@
 
     .paper-meta {
         padding: 3px 0;
-        font-size: 14px;
+        font-size: 13px;
         border-bottom: 1px solid #ececec;
     }
 

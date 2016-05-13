@@ -49,7 +49,7 @@
 
     .featured-content {
         @extend %clearfix;
-        margin: 3.5em 0 0;
+        margin: 3.5em 0;
 
         .featured-work > h2, .featured-event > h2 {
             text-transform: uppercase;

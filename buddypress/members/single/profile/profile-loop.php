@@ -89,7 +89,7 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 		<?php if ( bp_is_my_profile() && !paper_limit_met(bp_displayed_user_id())) : ?>
 			<a class="btn" href="<?php echo site_url(); ?>/add-paper">Add a Paper</a>
 		<?php elseif ( bp_is_my_profile()) : ?>
-			<p class="info">Note: You have already added two papers for this calendar year.  To add another, you must remove one of your <?php echo date('Y'); ?> submissions.</p>
+			<p class="info"><i class="fa fa-info-circle"></i>Note: You have already added two papers for this calendar year.  To add another, you must remove one of your <?php echo date('Y'); ?> submissions.</p>
 		<?php endif; ?>
 		</div>
 	<?php

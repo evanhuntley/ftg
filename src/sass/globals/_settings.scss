@@ -117,3 +117,7 @@ $header_height: 180px;
         display: inline;
         }
     }
+
+@keyframes fade {
+	from { opacity:0 } to { opacity:1 }
+}

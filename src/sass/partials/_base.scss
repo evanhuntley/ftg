@@ -96,4 +96,14 @@ table {
     font-size: 13px;
     border: 1px solid #67798d;
     background: lighten(#67798d, 40%);
+
+    i.fa {
+        margin-right: 5px;
+        color: #67798d;
+    }
+}
+
+.sort-notice {
+    font-size: 13px;
+    font-style: italic;
 }

@@ -30,3 +30,6 @@ assets/fonts/
 
 # Bower
 src/components
+
+deploy
+rsync_exclude.txt
