@@ -7,23 +7,23 @@
     "gulp": "^3.8.11"
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.1",
-    "bower": "^1.7.7",
-    "browser-sync": "^2.11.1",
-    "cssnano": "^3.5.2",
+    "autoprefixer": "^6.3.6",
+    "bower": "^1.7.9",
+    "browser-sync": "^2.13.0",
+    "cssnano": "^3.7.0",
     "gulp-concat": "^2.5.2",
     "gulp-expect-file": "0.0.7",
-    "gulp-if": "^2.0.0",
+    "gulp-if": "^2.0.1",
     "gulp-imagemin": "^0.6.2",
-    "gulp-jshint": "^2.0.0",
-    "gulp-load-plugins": "^1.2.0",
-    "gulp-postcss": "^6.1.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-postcss": "^6.1.1",
     "gulp-rename": "^1.2.0",
-    "gulp-sass": "^2.1.1",
+    "gulp-sass": "^2.3.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^0.3.1",
-    "jshint": "^2.9.1",
-    "jshint-stylish": "^2.1.0",
-    "postcss-import": "^8.0.2"
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "postcss-import": "^8.1.2"
   }
 }
