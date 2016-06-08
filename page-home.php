@@ -92,12 +92,15 @@
     <div class="container">
         <h2>Our Members</h2>
         <?php
+            $active = get_active_users();
+
             $args = array(
                 'type' => 'random',
                 'max' => 3,
                 'member_type' => array( 'member', 'senior-member', 'fellow' ),
-                //'meta_key' => 'ftg_user_uploaded_avatar',
-                //'meta_value' => 1
+                'meta_key' => 'ftg_user_uploaded_avatar',
+                'meta_value' => 1,
+                'include' => $active
             );
             if ( bp_has_members( $args ) ) : ?>
             <ul class="members-list">
@@ -112,21 +115,9 @@
                         <div class="item-title">
                             <a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
                         </div>
-                        <div class="type">
-                            <?php
-                                $type_array = bp_get_member_type( bp_get_member_user_id(), false );
-                                $member_type = $type_array[0];
-                                if ( $member_type ) {
-                                    echo $member_type;
-                                } else {
-                                    echo 'Administrator';
-                                }
-                            ?>
-                        </div>
-
                         <div class="university">
                             <?php if (bp_get_member_profile_data('field=Institution')) : ?>
-                                <i class="fa fa-university"></i><?php echo bp_get_member_profile_data('field=Institution'); ?>
+                                <?php echo bp_get_member_profile_data('field=Institution'); ?>
                             <?php endif; ?>
                         </div>
                     </div>

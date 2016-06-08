@@ -111,11 +111,21 @@
     .featured-members {
         @extend %clearfix;
         padding: 2em 0;
-        background: lighten(#67798d, 40%);
+        background-image: url('../img/bg_featured-members.jpg');
+
+        @include bp-l {
+            padding: 5em 0;
+        }
 
         h2 {
+            color: lighten(#152b4a, 10%);
             text-align: center;
             text-transform: uppercase;
+
+            @include bp-l {
+                margin: 0 0 2em;
+                @include font-size(2, 1.2);
+            }
         }
 
         .members-list {
@@ -128,6 +138,28 @@
                 @include bp-l {
                     width: 33.3%;
                     float: left;
+                }
+
+                .item-title {
+                    font-size: 20px;
+                    margin: .75em 0 0;
+
+                    a {
+                        color: #333;
+                    }
+                }
+
+                .type {
+                    text-transform: capitalize;
+                }
+
+                .university {
+                    color: #757575;
+                    font-size: 14px;
+
+                    i {
+                        margin-right: 5px;
+                    }
                 }
             }
         }

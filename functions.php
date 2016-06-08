@@ -276,11 +276,11 @@ function get_active_users() {
 
      $userQuery = new WP_User_Query($args);
      $users_list = '';
-     $i = 0;
+     $i = 1;
 
      foreach($userQuery->results as $user) {
          $users_list .= $user->ID;
-         if ($i !== 0) {
+         if ($i < count($userQuery->results)) {
              $users_list .= ', ';
          }
          $i++;
