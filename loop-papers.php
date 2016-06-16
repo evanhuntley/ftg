@@ -39,6 +39,12 @@
 			?>
 		</span>
 	<?php endif; ?>
+	<span class="paper-id">
+	<?php
+		$id = get_the_id();
+		echo 'ID: ' . sprintf('%05d', $id);
+	?>
+	</span>
 </div>
 <div class="abstract"><?php echo types_render_field('abstract', array("raw" => true)); ?></div>
 <?php if ($published_details) : ?>

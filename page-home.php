@@ -5,14 +5,12 @@
 
 <?php
     $main_title = types_render_field('hero-main-title', array("raw" => true));
-    $subtitle = types_render_field('hero-subtitle', array("raw" => true));
 ?>
 
 <section class="section-header home-hero">
     <div class="container">
         <div class="hero-copy">
             <h1><?= $main_title; ?></h1>
-            <p><?= $subtitle; ?></p>
         </div>
     </div>
 </section>

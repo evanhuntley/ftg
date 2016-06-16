@@ -14,7 +14,7 @@
     "gulp-concat": "^2.5.2",
     "gulp-expect-file": "0.0.7",
     "gulp-if": "^2.0.1",
-    "gulp-imagemin": "^0.6.2",
+    "gulp-imagemin": "^3.0.1",
     "gulp-jshint": "^2.0.1",
     "gulp-load-plugins": "^1.2.4",
     "gulp-postcss": "^6.1.1",

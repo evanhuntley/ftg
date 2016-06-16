@@ -4,11 +4,9 @@
 
 header {
     @extend %clearfix;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    z-index: 50;
+    background: #fff;
 
     nav {
         position: absolute;
@@ -16,36 +14,6 @@ header {
         margin: 9px 0 0;
         padding: 2em 0;
         font-family: 'Lato', Arial, sans-serif;
-
-        ul {
-            margin: 0;
-            display: none;
-        }
-
-        li {
-            display: block;
-            text-align: center;
-
-            a {
-                display: block;
-                padding: .5em 1em;
-                color: #fff;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-
-        }
-
-        &.open {
-            opacity: 0;
-            background: #0C1E38;
-            animation: fade ease-in-out .4s;
-            animation-fill-mode: forwards;
-
-            ul {
-                display: block;
-            }
-        }
 
         @include bp-m {
             width: 50%;
@@ -60,30 +28,105 @@ header {
             position: static;
             float: right;
             width: 70%;
-            margin: 1em 0 0;
+            margin: 0;
             padding: 0;
 
             &.open {
                 background: transparent;
             }
+        }
 
-            ul {
+        ul {
+            margin: 0;
+            display: none;
+
+            @include bp-xl {
                 display: block;
                 padding: 0;
                 float: right;
             }
+        }
+
+        li {
+            display: block;
+            text-align: center;
+
+            a {
+                display: block;
+                padding: 20px 1em 23px;
+                color: #656565;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border-top: 3px solid transparent;
+                @include font-size(.95);
+                transition: all .2s;
+            }
+
+            @include bp-l {
+                display: inline-block;
+
+                &:hover {
+
+                    ul {
+                        opacity: 0;
+                        display: block;
+                        animation: fade ease-in .2s;
+                        animation-fill-mode: forwards;
+                    }
+
+                    a {
+                        border-color: $blue;
+                    }
+                }
+            }
+        }
+
+        &.open {
+            opacity: 0;
+            background: #0C1E38;
+            animation: fade ease-in-out .4s;
+            animation-fill-mode: forwards;
+
+            ul {
+                display: block;
+            }
+        }
+
+        /* Submenus in nav ----------------------------- */
+        .sub-menu {
+            display: none;
+            margin: 0;
+            padding: .5em 0 .5em 1em;
+            background: #0C1E38;
+            z-index: 5;
+            border-top: 1px solid rgba(0, 0, 0, .25);
+            border-bottom: 1px solid rgba(0, 0, 0, .25);
+
+            @include bp-l {
+                position: absolute;
+                width: 200px;
+                padding: 0;
+                border: 0;
+            }
 
             li {
-                display: inline-block;
-                margin-left: 1em;
-                text-align: left;
+                width: 100%;
+                transition: all .2s;
+            }
 
-                a {
-                    padding: 1em;
+            a {
+                padding: .5em 1em;
+                text-transform: none;
+                font-weight: 400;
+                color: #fff;
+                border: none;
+
+                &::before {
+                    content: none;
                 }
 
-                &:last-child a {
-                    padding-right: 0;
+                &:hover {
+                    background: lighten(#0C1E38, 10%);
                 }
             }
         }
@@ -92,8 +135,8 @@ header {
     .logo {
         float: left;
         display: block;
-        width: 240px;
-        height: 45px;
+        width: 200px;
+        height: 43px;
         margin: 10px 0;
         background: url('../img/l_ftg.png');
         background: url('../img/l_ftg.svg'),
@@ -105,9 +148,7 @@ header {
         color: transparent;
 
         @include bp-xl {
-            margin: 16px 0 0;
-            width: 300px;
-            height: 57px;
+            margin: 12px 0 0;
         }
     }
 
@@ -192,14 +233,10 @@ header {
         }
     }
 
-    .page-template-page-paper-list & {
-        background: url('../img/bg_papers.jpg');
-    }
-
     h1 {
         position: absolute;
         bottom: 0;
         margin: 0 0 10px;
-        color: #fff;
+        color: $blue;
     }
 }

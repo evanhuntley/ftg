@@ -29,11 +29,25 @@
         <article role="main" class="primary-content type-page" id="post-<?php the_ID(); ?>">
     <?php endif ; ?>
 
+    <?php if ( !is_buddypress()) : ?>
+    <div class="content-block">
         <?php the_content(); ?>
+    </div>
+    <?php else : ?>
+        <?php the_content(); ?>
+    <?php endif; ?>
+    
+	<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:' ), 'after' => '</div>' ) ); ?>
 
-		<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:' ), 'after' => '</div>' ) ); ?>
+    <?php endwhile; ?>
 
-        <?php endwhile; ?>
+    <?php if ( !is_buddypress()) : ?>
+    <aside class="secondary-content">
+        <?php get_sidebar(); ?>
+    </aside>
+    <?php endif; ?>
+
     </article>
+
 
 <?php get_footer(); ?>

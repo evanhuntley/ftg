@@ -56,18 +56,19 @@ input[type="submit"], .btn {
     font-family: 'Lato', Arial, sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
-    background: #89c23f;
+    background: #006837;
     border-radius: 5px;
+    transition: all .2s;
 
     &:hover {
-        background: darken(#89c23f, 10%);
+        background: darken(#006837, 5%);
     }
 
     &.alt {
-        background: #67798d;
+        background: #213c67;
 
         &:hover {
-            background: #344559;
+            background: darken(#213c67, 5%);
         }
     }
 }

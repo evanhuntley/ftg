@@ -9,26 +9,22 @@
 
         .container {
             min-height: 300px;
-            @include bp-l {
-                min-height: 400px;
-            }
         }
 
         h1 {
             position: static;
             margin: 0 0 .5em;
-            color: #89c23f;
+            color: $blue;
             @include font-size(2, 2.2);
-            text-transform: uppercase;
             letter-spacing: 1px;
 
             @include bp-l {
-                @include font-size(4, 1.5);
+                @include font-size(2.5, 1.5);
             }
         }
 
         p {
-            @include font-size(2, 1.5);
+            @include font-size(1.5, 1.5);
             color: #fff;
         }
 
@@ -39,7 +35,7 @@
             @include bp-l {
                 width: auto;
                 position: absolute;
-                top: 45%;
+                bottom: 0;
                 right: 0;
                 text-align: right;
                 padding: 0;

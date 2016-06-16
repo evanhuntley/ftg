@@ -13,8 +13,8 @@ add_theme_support( 'menus' );
 if ( function_exists('register_sidebar') )
 	register_sidebar(array(
         'id' => 'sidebar-1',
-		'before_widget' => '<aside>',
-		'after_widget' => '</aside>',
+        'before_widget' => '<div class="widget">',
+		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 ));
@@ -100,27 +100,30 @@ function current_to_active($text){
 add_filter ('wp_nav_menu','current_to_active');
 
 // Set Buddypress Member Types
-function bbg_register_member_types() {
-    bp_register_member_type( 'member', array(
+function bbg_register_member_types_with_directory() {
+    bp_register_member_type( 'voting-member', array(
         'labels' => array(
-            'name'          => 'Members',
-            'singular_name' => 'Member',
+            'name'          => 'Voting Members',
+            'singular_name' => 'Voting Member',
         ),
+        'has_directory' => 'voting-members'
     ) );
 	bp_register_member_type( 'senior-member', array(
         'labels' => array(
             'name'          => 'Senior Members',
             'singular_name' => 'Senior Member',
         ),
+        'has_directory' => 'senior-members'
     ) );
 	bp_register_member_type( 'fellow', array(
         'labels' => array(
             'name'          => 'Fellows',
             'singular_name' => 'Fellow',
         ),
+        'has_directory' => 'fellows'
     ) );
 }
-add_action( 'bp_init', 'bbg_register_member_types' );
+add_action( 'bp_init', 'bbg_register_member_types_with_directory' );
 
 // Admin Bar - Only for Admin
 if ( ! current_user_can( 'manage_options' ) ) {
@@ -326,5 +329,81 @@ function ftg_theme_setup() {
   add_image_size( 'event-feature', 600, 225, true ); // (cropped)
   add_image_size( 'event-thumb', 300, 300, true ); // (cropped)
 }
+
+// Menu Meta Box
+function custom_meta_box_markup($object)
+{
+    wp_nonce_field(basename(__FILE__), "meta-box-nonce");
+
+    ?>
+        <div>
+			<p><strong>Menu</strong></p>
+            <label class="screen-reader-text" for="meta-box-dropdown">Menu</label>
+            <select name="meta-box-dropdown">
+				<option>-- Inherit --</option>
+				<?php
+					$menus = get_terms( 'nav_menu', array( 'hide_empty' => true ) );
+
+					foreach ( $menus as $menu ) {
+
+						if ( $menu->name == get_post_meta($object->ID, "meta-box-dropdown", true))
+						{
+						    ?>
+						        <option selected><?php echo $menu->name; ?></option>
+						    <?php
+						}
+						else {
+							?>
+						        <option><?php echo $menu->name; ?></option>
+						    <?php
+						}
+					}
+				?>
+				<option>-- None --</option>
+            </select>
+        </div>
+    <?php
+}
+
+function add_custom_meta_box()
+{
+    add_meta_box("demo-meta-box", "Subnavigation", "custom_meta_box_markup", "page", "side", "low", null);
+}
+
+add_action("add_meta_boxes", "add_custom_meta_box");
+
+function save_custom_meta_box($post_id, $post, $update)
+{
+    if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
+        return $post_id;
+
+    if(!current_user_can("edit_post", $post_id))
+        return $post_id;
+
+    if(defined("DOING_AUTOSAVE") && DOING_AUTOSAVE)
+        return $post_id;
+
+    $slug = "page";
+    if($slug != $post->post_type)
+        return $post_id;
+
+    $meta_box_dropdown_value = "";
+
+    if(isset($_POST["meta-box-dropdown"]))
+    {
+        $meta_box_dropdown_value = $_POST["meta-box-dropdown"];
+    }
+    update_post_meta($post_id, "meta-box-dropdown", $meta_box_dropdown_value);
+}
+
+add_action("save_post", "save_custom_meta_box", 10, 3);
+
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+add_filter( 'gform_init_scripts_footer', '__return_true' );
+
 
 ?>

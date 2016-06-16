@@ -26,7 +26,9 @@
             $form_id = types_render_field("rsvp-form-id", array("raw" => true));
             $terms = get_the_terms($post->ID, 'event-id');
 
-            $event_id = array_pop($terms)->slug;
+            if ( $terms ) {
+                $event_id = array_pop($terms)->slug;
+            }
 
             echo '<span class="event-id hidden">' . $event_id . '</span>';
 
@@ -48,7 +50,7 @@
 
             if ( $form_id && $rsvps->post_count > 0) {
                 echo do_shortcode('[gravityform id="' . $form_id . '" ajax=true update="' . $rsvp_ID .'"]');
-            } else {
+            } elseif ( $form_id ) {
                 echo do_shortcode('[gravityform id="' . $form_id . '" ajax=true]');
             }
 
