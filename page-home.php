@@ -95,7 +95,7 @@
             $args = array(
                 'type' => 'random',
                 'max' => 3,
-                'member_type' => array( 'member', 'senior-member', 'fellow' ),
+                'member_type' => array( 'voting-member', 'senior-member', 'fellow' ),
                 'meta_key' => 'ftg_user_uploaded_avatar',
                 'meta_value' => 1,
                 'include' => $active

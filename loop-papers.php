@@ -8,13 +8,17 @@
 <h2><?php the_title(); ?></h2>
 <div class="paper-meta">
 	<span class="author"><i class="fa fa-user"></i>
-		<?php echo bp_core_get_userlink($post->post_author); ?>
+		<?php //echo bp_core_get_userlink($post->post_author); ?>
 		<?php
+			$first = true;
 			if ( $additional_authors ) {
 				$authors = explode(',', $additional_authors);
 				foreach($authors as $author) {
-					echo ', ';
+					if ( !$first) {
+						echo ', ';
+					}
 					echo check_for_author($author);
+					$first = false;
 				}
 			}
 		?>
@@ -42,7 +46,7 @@
 	<span class="paper-id">
 	<?php
 		$id = get_the_id();
-		echo 'ID: ' . sprintf('%05d', $id);
+		echo 'Working Paper No. ' . sprintf('%05d', $id);
 	?>
 	</span>
 </div>

@@ -8,7 +8,7 @@
         background-image: url('../img/bg_home.jpg');
 
         .container {
-            min-height: 300px;
+            min-height: 254px;
         }
 
         h1 {
@@ -49,12 +49,13 @@
 
         .featured-work > h2, .featured-event > h2 {
             text-transform: uppercase;
-            text-align: center;
+            text-align: left;
             letter-spacing: 1px;
-            color: lighten(#67798d, 15%);
+            color: #999;
+            font-weight: 400;
 
             @include bp-l {
-                @include font-size(2, 1.5);
+                @include font-size(1.2, 1.5);
             }
         }
 

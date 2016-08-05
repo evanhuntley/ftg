@@ -42,7 +42,7 @@
 	        <nav role="navigation">
 	            <?php
 	                $args = array(
-	                    'container' => 'false',
+	                    'container' => false,
 	                    'items_wrap' => '<ul>%3$s</ul>',
 	                    );
 	                wp_nav_menu($args);
