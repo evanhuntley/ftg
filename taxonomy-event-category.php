@@ -1,7 +1,8 @@
-<?php
-    /* Template Name: Events Page */
-?>
 <?php get_header(); ?>
+
+<?php
+    $slug = $wp_query->queried_object->name;
+?>
 
 <section class="section-header home-hero">
     <div class="container">
@@ -20,6 +21,11 @@
 
 <section role="main" class="primary-content">
     <div class="container">
+        <?php
+        	if ( have_posts() )
+        		the_post();
+        ?>
+
             <?php
                 // Only show the appopriate events based on permissions.
                 if ( !rcp_is_active() ) {
@@ -30,18 +36,24 @@
 
                 $args = array(
                     'post_type' => 'events',
-                    'posts_per_page' => -1,
-                    'post__not_in' => $premium_ids,
                     'orderby' => 'meta_value',
                     'meta_key'  => 'wpcf-event-date',
-                    'order' => 'DESC'
+                    'order' => 'DESC',
+                    'post__not_in' => $premium_ids,
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'event-category',
+                            'field'    => 'slug',
+                            'terms'    => $slug,
+                        ),
+                    ),
                 );
-                $events = new WP_Query( $args);
+                $posts = query_posts( $args);
             ?>
 
             <ul class="events-list">
             <?php
-                while ( $events->have_posts() ) : $events->the_post();
+                while ( have_posts() ) : the_post();
 
                 $date = types_render_field("event-date", array("format" => "M j"));
                 $end_date = types_render_field("end-date", array("format" => "M j, Y"));

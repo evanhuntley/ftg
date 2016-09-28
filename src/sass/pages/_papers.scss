@@ -28,6 +28,7 @@
     }
 
     h2 {
+        @include font-size(1.375, 1.8);
         margin-bottom: 4px;
 
         .profile & {
@@ -40,7 +41,7 @@
         color: #8e8e8e;
     }
 
-    .author, .tags, .date, .paper-url, .download {
+    .author, .date, .paper-url, .download {
         margin-right: 1em;
         color: #8e8e8e;
     }
@@ -75,5 +76,32 @@
         margin: .5em 0 0;
         font-size: 12px;
         font-style: italic;
+    }
+
+    .tags {
+        margin: 1em 0 0;
+
+        a {
+            @include font-size(.6875, 1);
+            display: inline-block;
+            padding: 3px 6px;
+            margin-right: 2px;
+            background: #ececec;
+            border-radius: 3px;
+        }
+    }
+}
+
+/* Single Paper --------------------------------------- */
+
+.single-paper {
+
+    .paper-meta {
+        margin: 0 0 1em;
+        @include font-size(1.125, 1.5);
+    }
+
+    .actions {
+        margin: 1em 0;
     }
 }

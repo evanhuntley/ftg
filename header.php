@@ -42,6 +42,7 @@
 	        <nav role="navigation">
 	            <?php
 	                $args = array(
+						'menu' => 'Main',
 	                    'container' => false,
 	                    'items_wrap' => '<ul>%3$s</ul>',
 	                    );

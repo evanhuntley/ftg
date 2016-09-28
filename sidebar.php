@@ -1,4 +1,3 @@
-<?php if( is_active_sidebar('sidebar-1') ) : ?>
 <section role="complementary" class="secondary-content">
     <?php if ( get_post_type() == 'page') {
         $post_ID = $post->ID;
@@ -25,6 +24,7 @@
         }
     }
     ?>
-    <?php dynamic_sidebar('sidebar-1'); ?>
+    <?php if( is_active_sidebar('sidebar-1') ) : ?>
+        <?php dynamic_sidebar('sidebar-1'); ?>
+    <?php endif; ?>
 </section>
-<?php endif; ?>

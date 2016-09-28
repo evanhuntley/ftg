@@ -47,7 +47,7 @@
         @extend %clearfix;
         margin: 3.5em 0;
 
-        .featured-work > h2, .featured-event > h2 {
+        .featured-news > h2, .featured-event > h2 {
             text-transform: uppercase;
             text-align: left;
             letter-spacing: 1px;
@@ -89,7 +89,7 @@
             }
         }
 
-        .featured-work {
+        .featured-news {
             padding-top: 3em;
 
             @include bp-l {
@@ -99,8 +99,16 @@
                 padding-top: 0;
             }
 
-            .paper-item:first-child {
-                padding-top: 0;
+            .news-item {
+                margin: 0 0 1em;
+
+                h2 {
+                    margin-bottom: .25em;
+                }
+
+                .date {
+                    color: #8e8e8e;
+                }
             }
         }
     }

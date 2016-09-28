@@ -63,25 +63,27 @@
             <?php endwhile; ?>
             <a class="btn alt" href="/ftg-events/">View all events</a>
         </section>
-        <section class="featured-work">
-            <h2>Recent Work</h2>
+        <section class="featured-news">
+            <h2>Recent News</h2>
             <?php
                 $args = array(
-                    'post_type' => 'papers',
-                    'orderby' => 'date',
-                    'posts_per_page' => 2
+                    'post_type' => 'news',
+                    'posts_per_page' => 3
                 );
-                $papers = new WP_Query( $args);
+                $news = new WP_Query( $args);
             ?>
 
-            <div class="paper-list">
+            <div class="news-list">
             <?php
-                while ( $papers->have_posts() ) : $papers->the_post();
+                while ( $news->have_posts() ) : $news->the_post();
             ?>
-                <?php get_template_part('loop', 'papers'); ?>
+                <div class="news-item">
+                    <h2><a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                    <div class="date"><?php the_date(); ?></div>
+                </div>
             <?php endwhile; ?>
             </div>
-            <a class="btn alt" href="/paper-index/">View all papers</a>
+            <a class="btn alt" href="/news/">View all news</a>
         </section>
     </div>
 </section>

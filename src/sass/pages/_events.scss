@@ -138,9 +138,21 @@
         float: left;
         clear: both;
 
-        .date, .location {
+        .date {
             display: block;
-            margin: 1em 0;
+            margin: 1em 0 0;
+            color: #8e8e8e;
+            @include font-size(1.2, 2);
+
+            i {
+                margin: 0 5px 0 0;
+            }
+
+        }
+
+        .location {
+            display: block;
+            margin: 0 0 1em;
             color: #8e8e8e;
             @include font-size(1.2, 2);
 
@@ -160,7 +172,7 @@
     }
 
     /* Agenda Table */
-    table {
+    .content table {
         border: none;
 
         td:first-child {
@@ -180,6 +192,26 @@
 
             &:first-child {
                 border-top: 1px solid #ececec;
+            }
+        }
+    }
+
+    .participants {
+        float: left;
+        clear: both;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-left: 0;
+        }
+
+        li {
+            width: 45%;
+            display: inline-block;
+
+            &:nth-child(2n) {
+                margin-left: 5%;
             }
         }
     }

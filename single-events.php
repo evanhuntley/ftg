@@ -20,11 +20,13 @@
     <article role="main" class="primary-content type-event" id="post-<?php the_ID(); ?>">
 
         <?php
-            $date = types_render_field("event-date", array("format" => "M j, Y"));
+            $date = types_render_field("event-date", array("format" => "M j"));
+            $end_date = types_render_field("end-date", array("format" => "M j, Y"));
             $location = types_render_field("location-full", array("raw" => false));
             $description = types_render_field("event-short-description", array("raw" => true));
             $form_id = types_render_field("rsvp-form-id", array("raw" => true));
             $terms = get_the_terms($post->ID, 'event-id');
+            $participants = types_render_field("participant-list", array("html" => true));
 
             if ( $terms ) {
                 $event_id = array_pop($terms)->slug;
@@ -58,14 +60,27 @@
             ?>
         <div class="event-image"><a href="<?= get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>"><img src="<?php echo the_post_thumbnail_url('event-feature'); ?>"></a></div>
         <div class="event-details">
-            <span class="date"><i class="fa fa-calendar"></i><?= $date; ?></span>
+            <span class="date"><i class="fa fa-calendar"></i>
+                <?php
+                    if ( $end_date ) {
+                        echo $date . ' - ' . $end_date;
+                    } else {
+                        echo $date;
+                    }
+                ?>
+            </span>
             <span class="location"><?= $location; ?></span>
             <div class="description"><?php echo $description; ?></div>
         </div>
         <div class="content">
             <?php the_content(); ?>
         </div>
-
+        <?php if ( $participants) : ?>
+            <div class="participants block">
+                <h2>Participants</h2>
+                <?php echo $participants; ?>
+            </div>
+        <?php endif; ?>
     </article>
 
 <?php get_footer(); ?>

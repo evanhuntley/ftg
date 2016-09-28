@@ -62,7 +62,10 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&type=alphabetical&incl
 						$member_type_array = bp_get_member_type( bp_get_member_user_id(), false );
 
 						$member_type = $member_type_array[0];
-						if ( $member_type ) {
+
+						if ( $member_type == 'voting-member') {
+							echo 'Member';
+						} else if ( $member_type ) {
 							echo $member_type;
 						} else {
 							echo 'Administrator';

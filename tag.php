@@ -17,7 +17,7 @@
 
 <?php
     $current_path = $_SERVER['REQUEST_URI'];
-    $tag = single_tag_title("", false);
+    $tag = get_queried_object();
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
     $sortby = get_query_var('sortby') ? get_query_var('sortby') : 'date';
     $direction = get_query_var('direction') ? get_query_var('direction') : 'DESC';
@@ -64,7 +64,7 @@
             'order' => $direction,
             'orderby' => $sortby,
             'posts_per_page' => 5,
-            'tag' => $tag,
+            'tag' => $tag->slug,
             'paged' => $paged
         );
         $papers = new WP_Query( $args);
