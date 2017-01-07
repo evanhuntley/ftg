@@ -176,9 +176,8 @@ function custom_pagination($numpages = '', $pagerange = '', $paged='') {
     'format'          => 'page/%#%',
     'total'           => $numpages,
     'current'         => $paged,
-    'show_all'        => False,
+    'show_all'        => true,
     'end_size'        => 1,
-    'mid_size'        => $pagerange,
     'prev_next'       => True,
     'prev_text'       => __('&laquo;'),
     'next_text'       => __('&raquo;'),
@@ -292,6 +291,27 @@ function get_active_users() {
      return $users_list;
 }
 
+// Get "Old" News
+function get_old_news() {
+    $args = array(
+        'post_type' => 'news',
+        'posts_per_page' => -1
+    );
+
+    $news = new WP_Query($args);
+    $past_items = [];
+
+    while ( $news->have_posts() ) : $news->the_post();
+        $end = types_render_field("news-end-date", array("raw" => true));
+
+        if ($end < time() && $end != null) {
+            array_push($past_items, get_the_id());
+        }
+
+    endwhile;
+
+    return $past_items;
+}
 
 add_filter( 'gform_confirmation', 'custom_confirmation', 10, 4 );
 function custom_confirmation( $confirmation, $form, $entry, $ajax ) {

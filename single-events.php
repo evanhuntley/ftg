@@ -20,7 +20,8 @@
     <article role="main" class="primary-content type-event" id="post-<?php the_ID(); ?>">
 
         <?php
-            $date = types_render_field("event-date", array("format" => "M j"));
+            $date = types_render_field("event-date", array("format" => "M j, Y"));
+            $start_date = types_render_field("event-date", array("format" => "M j"));
             $end_date = types_render_field("end-date", array("format" => "M j, Y"));
             $location = types_render_field("location-full", array("raw" => false));
             $description = types_render_field("event-short-description", array("raw" => true));
@@ -63,7 +64,7 @@
             <span class="date"><i class="fa fa-calendar"></i>
                 <?php
                     if ( $end_date ) {
-                        echo $date . ' - ' . $end_date;
+                        echo $start_date . ' - ' . $end_date;
                     } else {
                         echo $date;
                     }

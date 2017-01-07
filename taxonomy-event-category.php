@@ -38,6 +38,7 @@
                     'post_type' => 'events',
                     'orderby' => 'meta_value',
                     'meta_key'  => 'wpcf-event-date',
+                    'posts_per_page' => -1,
                     'order' => 'DESC',
                     'post__not_in' => $premium_ids,
                     'tax_query' => array(

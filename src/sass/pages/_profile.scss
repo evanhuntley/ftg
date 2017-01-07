@@ -29,7 +29,7 @@
         .name, .type {
             width: 80%;
             float: left;
-            color: #fff;
+            color: $blue;
         }
 
         .name {
@@ -40,7 +40,7 @@
 
         .type {
             text-transform: capitalize;
-            color: rgba(255, 255, 255, .8);
+            color: #444;
         }
     }
 

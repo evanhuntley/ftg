@@ -102,14 +102,14 @@
         <?php while ( $papers->have_posts() ) : $papers->the_post(); ?>
             <?php get_template_part( 'loop', 'papers' ); ?>
         <?php endwhile; ?>
-    </div>
 
-    <!-- pagination here -->
-    <?php
-      if (function_exists(custom_pagination)) {
-        custom_pagination($papers->max_num_pages,"",$paged);
-      }
-    ?>
+        <!-- pagination here -->
+        <?php
+          if (function_exists(custom_pagination)) {
+            custom_pagination($papers->max_num_pages,"",$paged);
+          }
+        ?>
+    </div>
 
   <?php wp_reset_postdata(); ?>
 </section>

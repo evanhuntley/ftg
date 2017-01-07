@@ -14,6 +14,7 @@ header {
         margin: 9px 0 0;
         padding: 2em 0;
         font-family: 'Lato', Arial, sans-serif;
+        z-index: 2;
 
         @include bp-m {
             width: 50%;
@@ -182,7 +183,7 @@ header {
           border-radius: 1px;
           height: 3px;
           width: 30px;
-          background: #fff;
+          background: $blue;
           position: absolute;
           display: block;
           content: '';

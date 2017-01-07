@@ -19,7 +19,11 @@
 
     <article role="main" class="primary-content single-news" id="post-<?php the_ID(); ?>">
         <div class="content">
-            <div class="date"><?php echo get_the_date(); ?></div>
+            <?php
+                $date = types_render_field("news-announcement-date", array("format" => "M j, Y"));
+            ?>
+            <div class="date"><?php echo $date; ?></div>
+            <?php the_post_thumbnail('medium'); ?>
             <?php
                 wp_reset_query();
                 the_content();

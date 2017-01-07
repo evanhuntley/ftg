@@ -107,3 +107,12 @@ table {
     font-size: 13px;
     font-style: italic;
 }
+
+.custom-pagination {
+    width: 100%;
+    float: left;
+
+    .page-num {
+        margin-right: 1em;
+    }
+}

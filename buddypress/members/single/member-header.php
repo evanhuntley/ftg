@@ -28,8 +28,12 @@ do_action( 'bp_before_member_header' ); ?>
 	<div class="type">
 		<?php
 			$member_type = bp_get_member_type( bp_displayed_user_id());
-		 	if ( $member_type ) {
-				echo $member_type;
+			if ( $member_type == 'voting-member') {
+				echo 'Member';
+			} else if ( $member_type == 'senior-member') {
+				echo 'Senior Member';
+			} else if ( $member_type ) {
+				echo $member_type . 'test';
 			} else {
 				echo 'Administrator';
 			}

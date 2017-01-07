@@ -104,4 +104,17 @@
     .actions {
         margin: 1em 0;
     }
+
+    .tags {
+        margin: 1em 0 0;
+
+        a {
+            @include font-size(.6875, 1);
+            display: inline-block;
+            padding: 3px 6px;
+            margin-right: 2px;
+            background: #ececec;
+            border-radius: 3px;
+        }
+    }
 }

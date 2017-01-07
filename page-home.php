@@ -51,12 +51,22 @@
 
                 $description = types_render_field("event-short-description", array("raw" => true));
                 $date = types_render_field("event-date", array("format" => "M j, Y"));
+                $start_date = types_render_field("event-date", array("format" => "M j"));
+                $end_date = types_render_field("end-date", array("format" => "M j, Y"));
                 $location = types_render_field("location-short-name", array("raw" => true));
             ?>
             <div class="event">
                 <a href="<?= get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>"><img src="<?php echo the_post_thumbnail_url('event-feature'); ?>"></a>
                 <h2><a href="<?= get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>"><?php echo get_the_title(); ?></a></h2>
-                <span class="date"><i class="fa fa-calendar"></i><?= $date; ?></span>
+                <span class="date"><i class="fa fa-calendar"></i>
+                    <?php
+                        if ( $end_date ) {
+                            echo $start_date . ' - ' . $end_date;
+                        } else {
+                            echo $date;
+                        }
+                    ?>
+                </span>
                 <span class="location"><i class="fa fa-map-marker"></i><?= $location; ?></span>
                 <div class="description"><?php echo $description; ?></div>
             </div>
@@ -68,7 +78,10 @@
             <?php
                 $args = array(
                     'post_type' => 'news',
-                    'posts_per_page' => 3
+                    'posts_per_page' => 3,
+                    'orderby' => 'meta_value',
+                    'meta_key' => 'wpcf-news-announcement-date',
+                    'post__not_in' => get_old_news()
                 );
                 $news = new WP_Query( $args);
             ?>
@@ -76,10 +89,12 @@
             <div class="news-list">
             <?php
                 while ( $news->have_posts() ) : $news->the_post();
+
+                $date = types_render_field("news-announcement-date", array("format" => "M j, Y"));
             ?>
                 <div class="news-item">
                     <h2><a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                    <div class="date"><?php the_date(); ?></div>
+                    <div class="date"><?php echo $date; ?></div>
                 </div>
             <?php endwhile; ?>
             </div>
@@ -90,7 +105,7 @@
 
 <section class="featured-members">
     <div class="container">
-        <h2>Our Members</h2>
+        <h2>Featured Members</h2>
         <?php
             $active = get_active_users();
 

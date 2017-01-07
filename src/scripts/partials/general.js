@@ -12,5 +12,4 @@ jQuery(document).ready(function($) {
         $('header nav').toggleClass('open');
         $(this).toggleClass('active');
     });
-
 });

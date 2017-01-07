@@ -28,4 +28,13 @@
         color: #8e8e8e;
         @include font-size(1.125, 1.5);
     }
+
+    .wp-post-image {
+        float: right;
+        margin: 1em 0;
+
+        @include bp-l {
+            margin: 0 0 1em 1em;
+        }
+    }
 }

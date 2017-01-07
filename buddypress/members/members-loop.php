@@ -23,9 +23,11 @@ do_action( 'bp_before_members_loop' ); ?>
 
 $active = get_active_users();
 
-if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&type=alphabetical&include=' . $active ) ) : ?>
+if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&per_page=24'.'&include=' . $active ) ) : ?>
 
 	<div id="pag-top" class="pagination">
+
+		<?php bp_members_pagination_count(); ?>
 
 		<div class="pagination-links" id="member-dir-pag-top">
 
@@ -65,6 +67,8 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&type=alphabetical&incl
 
 						if ( $member_type == 'voting-member') {
 							echo 'Member';
+						} else if ( $member_type == 'senior-member') {
+							echo 'Senior Member';
 						} else if ( $member_type ) {
 							echo $member_type;
 						} else {
