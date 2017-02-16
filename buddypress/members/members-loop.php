@@ -23,7 +23,13 @@ do_action( 'bp_before_members_loop' ); ?>
 
 $active = get_active_users();
 
-if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&per_page=24'.'&include=' . $active ) ) : ?>
+if ( bp_ajax_querystring( 'members' ) ==""){
+	$queryString = "type=last-name&action=last-name&per_page=24" . "&include=" . $active;}
+else {$queryString = bp_ajax_querystring( 'members' ) . '&include=' . $active; }
+?>
+
+
+<?php if ( bp_has_members( $queryString) ) : ?>
 
 	<div id="pag-top" class="pagination">
 

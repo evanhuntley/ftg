@@ -76,12 +76,15 @@
         <section class="featured-news">
             <h2>Recent News</h2>
             <?php
+                $oldNews = get_old_news();
+                $wrongNews = array_merge($premium_ids, $oldNews);
+
                 $args = array(
                     'post_type' => 'news',
                     'posts_per_page' => 3,
                     'orderby' => 'meta_value',
                     'meta_key' => 'wpcf-news-announcement-date',
-                    'post__not_in' => get_old_news()
+                    'post__not_in' => $wrongNews
                 );
                 $news = new WP_Query( $args);
             ?>

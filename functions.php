@@ -425,5 +425,19 @@ remove_action( 'admin_print_styles', 'print_emoji_styles' );
 
 add_filter( 'gform_init_scripts_footer', '__return_true' );
 
+function alphabetize_by_last_name( $bp_user_query ) {
+    if ( 'last-name' == $bp_user_query->query_vars['type'] )
+        $bp_user_query->uid_clauses['orderby'] = "ORDER BY substring_index(u.display_name, ' ', -1)";
+}
+add_action ( 'bp_pre_user_query', 'alphabetize_by_last_name' );
+
+// add order options to members loop
+function ch_member_order_options() {
+?>
+   <option value="last-name" selected="selected"><?php _e( 'Last Name', 'buddypress' ); ?></option>
+<?php
+}
+add_action( 'bp_members_directory_order_options', 'ch_member_order_options' );
+
 
 ?>

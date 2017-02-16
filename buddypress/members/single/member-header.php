@@ -33,7 +33,7 @@ do_action( 'bp_before_member_header' ); ?>
 			} else if ( $member_type == 'senior-member') {
 				echo 'Senior Member';
 			} else if ( $member_type ) {
-				echo $member_type . 'test';
+				echo $member_type;
 			} else {
 				echo 'Administrator';
 			}
