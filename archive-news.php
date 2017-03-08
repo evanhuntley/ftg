@@ -23,12 +23,12 @@
 		$news = new WP_Query( $args);
 	?>
 
-	<?php
-		$date = types_render_field("news-announcement-date", array("format" => "M j, Y"));
-	?>
 
 	<?php while ( $news->have_posts() ) : $news->the_post(); ?>
 		<div class="container news-list">
+			<?php
+				$date = types_render_field("news-announcement-date", array("format" => "M j, Y"));
+			?>
 			<article class="news-item">
 				<h2><a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a></h2>
 				<div class="date"><?php echo $date; ?></div>
