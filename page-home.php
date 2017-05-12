@@ -20,20 +20,36 @@
         <section class="featured-event">
             <?php
                 // Only show the appopriate events based on permissions.
+                $premium_ids = rcp_get_paid_posts();
+                
                 if ( !rcp_is_active() ) {
-                    $premium_ids = rcp_get_paid_posts();
+                    
+                    $args = array(
+                        'post_type' => 'events',
+                        'posts_per_page' => 1,
+                        'post__not_in' => $premium_ids,
+                        'orderby' => 'meta_value',
+                        'meta_key'  => 'wpcf-event-date',
+                        'order' => 'DESC'
+                    );
+                    
                 } else {
-                    $premium_ids = array();
+                    $args = array(
+                        'post_type' => 'events',
+                        'meta_key'  => 'wpcf-event-date',
+                        'orderby' => 'meta_value',
+                        "order" => 'ASC',
+                        "posts_per_page" => 1,
+                        'meta_query' => array(
+                            array(
+                                'key' => 'wpcf-event-date',
+                                'value' => time(),
+                                'compare' => '>='
+                            )
+                        )
+                    );
                 }
 
-                $args = array(
-                    'post_type' => 'events',
-                    'posts_per_page' => 1,
-                    'post__not_in' => $premium_ids,
-                    'orderby' => 'meta_value',
-                    'meta_key'  => 'wpcf-event-date',
-                    'order' => 'DESC'
-                );
                 $events = new WP_Query( $args);
 
                 $idArray =  $events->get_posts();
