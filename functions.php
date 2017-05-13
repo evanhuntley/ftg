@@ -439,5 +439,14 @@ function ch_member_order_options() {
 }
 add_action( 'bp_members_directory_order_options', 'ch_member_order_options' );
 
-
+// Redirect non-admins
+/**
+ * Redirect non-admins to the homepage after logging into the site.
+ *
+ * @since 	1.0
+ */
+function acme_login_redirect( $redirect_to, $request, $user  ) {
+	return ( is_array( $user->roles ) && in_array( 'administrator', $user->roles ) ) ? admin_url() : site_url();
+}
+add_filter( 'login_redirect', 'acme_login_redirect', 10, 3 );
 ?>
