@@ -57,6 +57,23 @@
             float: left;
         }
     }
+    
+    .rsvp {
+        margin: 1em 0 0;
+        
+        @include bp-l {
+            margin: 0;
+        }
+        
+        h3 {
+            margin-bottom: 0;
+        }
+        
+        @include bp-l {
+            width: 35%;
+            float: right;
+        }
+    }
 
     /* RSVP Form */
     .gform_wrapper, .gforms_confirmation_message {

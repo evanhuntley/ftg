@@ -25,41 +25,23 @@
             $end_date = types_render_field("end-date", array("format" => "M j, Y"));
             $location = types_render_field("location-full", array("raw" => false));
             $description = types_render_field("event-short-description", array("raw" => true));
-            $form_id = types_render_field("rsvp-form-id", array("raw" => true));
             $terms = get_the_terms($post->ID, 'event-id');
             $participants = types_render_field("participant-list", array("html" => true));
+            $rsvp = types_render_field("rsvp-form-url", array("raw" => true));
 
             if ( $terms ) {
                 $event_id = array_pop($terms)->slug;
             }
 
             echo '<span class="event-id hidden">' . $event_id . '</span>';
-
-            // Check for prior RSVP
-            $args = array(
-                'post_type' => 'attendance',
-                'author' => bp_loggedin_user_id(),
-                'tax_query' => array(
-            		array(
-            			'taxonomy' => 'event-id',
-            			'field'    => 'slug',
-            			'terms'    => $event_id,
-            		),
-            	),
-            );
-            $rsvps = new WP_Query( $args);
-
-            $rsvp_ID = $rsvps->posts[0]->ID;
-
-            if ( $form_id && $rsvps->post_count > 0) {
-                echo do_shortcode('[gravityform id="' . $form_id . '" ajax=true update="' . $rsvp_ID .'"]');
-            } elseif ( $form_id ) {
-                echo do_shortcode('[gravityform id="' . $form_id . '" ajax=true]');
-            }
-
-            wp_reset_query();
-            ?>
+        ?>
         <div class="event-image"><a href="<?= get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>"><img src="<?php echo the_post_thumbnail_url('event-feature'); ?>"></a></div>
+        <?php if ( $rsvp ) : ?>
+            <div class="rsvp">
+                <h3>Are You Coming?</h3>
+                <a href="<?= $rsvp; ?>" class="btn btn-primary">RSVP Now</a>
+            </div>
+        <?php endif; ?>
         <div class="event-details">
             <span class="date"><i class="fa fa-calendar"></i>
                 <?php
