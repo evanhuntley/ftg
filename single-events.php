@@ -6,7 +6,7 @@
         </div>
     </section>
 
-    <?php if ( !bp_is_member()) : ?>
+    <?php if ( !bp_is_user()) : ?>
     <div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
         <div class="container">
             <?php if(function_exists('bcn_display'))
@@ -56,7 +56,10 @@
             <div class="description"><?php echo $description; ?></div>
         </div>
         <div class="content">
-            <?php the_content(); ?>
+            <?php 
+                wp_reset_query();
+                the_content(); 
+            ?>
         </div>
         <?php if ( $participants) : ?>
             <div class="participants block">
